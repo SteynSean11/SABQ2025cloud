@@ -39,3 +39,6 @@ images:
 substitutions:
   _SERVICE_NAME: 'sabq2025cloud-github-trigger'
   _REGION: 'africa-south1'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
