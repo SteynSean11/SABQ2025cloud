@@ -23,14 +23,19 @@ To get a local copy up and running, follow these simple steps.
 ### Installation
 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/your_username_/SABQ2025cloud.git
    ```
+
 2. Install NPM packages
+
    ```sh
    pnpm install
    ```
+
 3. Run the development server
+
    ```sh
    pnpm dev
    ```
