@@ -1,6 +1,6 @@
 # TASK.md
 
-*Development Task Management & Roadmap*
+## Development Task Management & Roadmap
 
 **Last Updated**: 2025-06-27
 **Current Sprint**: Sprint 1: Minimum Viable Deployment
@@ -21,40 +21,40 @@
       - [x] Create a multi-stage Dockerfile to build and serve the static assets.
       - [x] Test the Docker container build and run it locally.
 
-- [ ] **Task 3: CI/CD Pipeline Setup** (Priority: High)
-      - [ ] Configure Google Cloud Build to connect to the source repository.
-      - [ ] Create a `cloudbuild.yaml` to define build, push, and deploy steps.
-      - [ ] Run a manual build to test the pipeline.
+- [x] **Task 3: CI/CD Pipeline Setup** (Priority: High)
+      - [x] Configure Google Cloud Build to connect to the source repository.
+      - [x] Create a `cloudbuild.yaml` to define build, push, and deploy steps.
+      - [x] Run a manual build to test the pipeline.
 
-- [ ] **Task 4: Google Cloud Run Deployment** (Priority: High)
-      - [ ] Create a new service in Google Cloud Run.
-      - [ ] Configure the service for public access.
-      - [ ] Manually deploy the first container image to verify the service.
+- [x] **Task 4: Google Cloud Run Deployment** (Priority: High)
+      - [x] Create a new service in Google Cloud Run.
+      - [x] Configure the service for public access.
+      - [x] Manually deploy the first container image to verify the service.
 
-- [ ] **Task 5: Connect Custom Domain** (Priority: High)
-      - [ ] Map the custom domain to the Cloud Run service.
-      - [ ] Verify domain ownership and ensure SSL is provisioned.
+- [x] **Task 5: Connect Custom Domain** (Priority: High)
+      - [x] Map the custom domain to the Cloud Run service.
+      - [x] Verify domain ownership and ensure SSL is provisioned.
 
 ## 📅 Sprint 2: Technical Excellence & Future-Proofing
 
 Focus: Solidify the project's foundation by implementing our contextual sandbox, automated quality checks, and testing workflows.
 
-- [ ] **Task 6: Implement Hierarchical Context** (Priority: High)
-      - [ ] Create the root CONTEXTUAL-GUARDRAIL.md file with our master rules.
-      - [ ] Create the .gemini/settings.json file to configure the contextFileName hierarchy.
-      - [ ] Create an initial, focused GEMINI.md file in apps/api with backend-specific rules.
-      - [ ] Create an initial, focused GEMINI.md file in apps/web with frontend-specific rules.
-      - [ ] Document code contribution standards in `README.md`.
+- [x] **Task 6: Implement Hierarchical Context** (Priority: High)
+      - [x] Create the root CONTEXTUAL-GUARDRAIL.md file with our master rules.
+      - [x] Create the .gemini/settings.json file to configure the contextFileName hierarchy.
+      - [x] Create an initial, focused GEMINI.md file in apps/api with backend-specific rules.
+      - [x] Create an initial, focused GEMINI.md file in apps/web with frontend-specific rules.
+      - [x] Document code contribution standards in `README.md`.
 
-- [ ] **Task 7: Enforce Code Quality** (Priority: High)
-      - [ ] Configure ESLint and Prettier for consistent code style.
-      - [ ] Set up Husky and lint-staged for pre-commit checks.
-      - [ ] Document code contribution standards in `README.md`.
+- [x] **Task 7: Enforce Code Quality** (Priority: High)
+      - [x] Configure ESLint and Prettier for consistent code style.
+      - [x] Set up Husky and lint-staged for pre-commit checks.
+      - [x] Document code contribution standards in `README.md`.
 
-- [ ] **Task 8: Implement Foundational Tests** (Priority: High)
-      - [ ] Configure Vitest and React Testing Library for the frontend.
-      - [ ] Write unit tests for initial UI components.
-      - [ ] Set a minimum test coverage target of 80% for new code.
+- [x] **Task 8: Implement Foundational Tests** (Priority: High)
+      - [x] Configure Vitest and React Testing Library for the frontend.
+      - [x] Write unit tests for initial UI components.
+      - [x] Set a minimum test coverage target of 80% for new code.
 
 - [ ] **Task 9: Set Up Storybook** (Priority: Medium)
       - [ ] Add Storybook for component development and documentation.
@@ -86,22 +86,24 @@ Focus: Solidify the project's foundation by implementing our contextual sandbox,
 
 ### Technical Debt
 
-*Items discovered during development that need attention*
+*Items discovered during development that need attention.*
+
+- The `storybook@latest init` command can hang or fail due to command syntax or network issues. Verbose logging (`pnpm --reporter=verbose ...`) is the first step to debug.
 
 ### Bug Fixes
 
-*Critical issues found during testing*
+#### Critical issues found during testing
 
 ### Performance Optimizations
 
-*Performance improvements identified during development*
+#### Performance improvements identified during development
 
 ## 📈 Milestones & Deadlines
 
 ### Major Milestones
 
-- **M1**: Basic static site live on Cloud Run (Sprint 1)
-- **M2**: CI/CD pipeline fully automated (Sprint 1)
+- **M1**: Basic static site live on Cloud Run (Sprint 1) - **COMPLETED**
+- **M2**: CI/CD pipeline fully automated (Sprint 1) - **COMPLETED**
 - **M3**: Foundational testing and quality gates established (Sprint 2)
 - **M4**: Backend API and database setup initiated (Backlog)
 

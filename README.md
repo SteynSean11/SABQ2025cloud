@@ -35,9 +35,23 @@ To get a local copy up and running, follow these simple steps.
    pnpm dev
    ```
 
+## Development Workflow
+
+This project uses a set of markdown files to guide development and ensure consistency. Before starting any new work, please familiarize yourself with the following documents:
+
+- **`CONTEXTGUARD.md`**: The master rules and guidelines for all development.
+- **`PLANNING.md`**: The high-level project plan, architecture, and technology stack.
+- **`TASK.md`**: The detailed list of current and upcoming development tasks.
+
+All development should be driven by the tasks outlined in `TASK.md`.
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+### Code Quality
+
+This project uses ESLint, Prettier, and lint-staged to enforce code quality and consistency. A pre-commit hook is configured to automatically format and lint your code before you commit. This ensures that all code in the repository adheres to the same standards.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
