@@ -1,0 +1,19 @@
+{
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.codeActions.triggerOnFocusChange": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.experimental.preferTreeSitter.css": true,
+    "editor.experimental.preferTreeSitter.typescript": true,
+    "editor.mouseWheelScrollSensitivity": 3,
+    "editor.mouseWheelZoom": true,
+    "editor.smoothScrolling": true,
+    "editor.tabCompletion": "on",
+    "scm.defaultViewMode": "tree",
+    "terminal.integrated.cwd": "C:\\Users\\steyn\\Projects\\sabudgetqueen\\WebPage\\SABQ2025cloud\\SABQ2025cloud",
+    "terminal.integrated.tabs.defaultColor": "terminal.ansiCyan",
+    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+    "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
+    "markdown.extension.completion.enabled": true,
+    "markdown.extension.print.theme": "dark",
+    "markdown.extension.print.onFileSave": false
+}

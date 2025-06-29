@@ -8,31 +8,42 @@ tags: [context, planning]
 
 Last Updated: 2025-06-28 (Mimicking last updated from related blueprints) Purpose: This document contains everything your AI coding assistant needs to understand the project: architecture decisions, technology stack, South African requirements, security considerations, and development approach. It's the single source of truth for all technical decisions. It should always be read at the start of any new conversation to understand the project's architecture, goals, style, and constraints.
 
-🎯 Project Vision & Goals
+---
 
-Primary Objective
+# 🎯 Project Vision & Goals
+
+---
+
+## Primary Objective
 
 The primary objective is to create an automated, individualized, and user-friendly personal budgeting web application specifically designed for middle-aged South Africans facing economic pressures. The application must be culturally aware, economically relevant, and accessible across various devices and connection speeds. The overarching goal is to empower individuals and families to achieve financial freedom through smart budgeting, practical education, and community support, ultimately helping them "live like royalty on any budget".
 
-Target Users
+## Target Users
 
 The application primarily targets young South African women (22-35 years old) who are starting their careers or managing young families. This demographic seeks practical, relatable advice to make their money go further, save for goals, and feel financially empowered. The initial broader vision also included middle-aged South Africans (35-55 years).
 
 Users are described as having mixed technical proficiency, so the app must be intuitive for non-technical users. They primarily use mobile devices, with occasional desktop access, and may experience intermittent connectivity due to load shedding and data costs. They face common financial challenges like "black tax," high data costs, and varying costs of living.
 
-🏗️ Architecture Overview
+---
 
-System Type
+## 🏗️ Architecture Overview
+
+---
+
+### System Type
 
 The system is envisioned as a Progressive Web Application (PWA) with offline capabilities. It will feature a microservices backend architecture and a mobile-first responsive design. The application should be cloud-hosted, with a preference for South African data centers to ensure low latency and compliance. It uses a pnpm monorepo structure to manage frontend and backend codebases within a single repository while keeping them decoupled.
 
-High-Level Components
+### High-Level Components
+
 1. Frontend Layer: A React PWA with offline sync capabilities.
 2. API Gateway: GraphQL with REST fallbacks.
 3. Microservices: Includes User Management, Budget Engine, Transaction Processor, Notification Service, and Reporting Service.
 4. Data Layer: Utilizes PostgreSQL as the primary database, Redis for caching, and InfluxDB for analytics.
 5. External Integrations: Connections to major South African banks, SARS (South African Revenue Service), and economic data APIs.
-Monorepo Structure
+
+### Monorepo Structure
+
 • Monorepo Root (/): Contains shared configurations (.prettierrc.json, tsconfig.base.json), package.json with root scripts, and documentation.
 • apps/web: The Next.js 14 frontend application, serving as the user interface.
 • apps/api: The Express.js backend application, serving the REST API.
@@ -41,9 +52,14 @@ Monorepo Structure
 ◦ @sabq/tailwind-config: Centralized Tailwind CSS configuration.
 ◦ @sabq/validation: Shared Zod validation schemas.
 
->🛠️ Technology Stack
+---
 
-Frontend
+## 🛠️ Technology Stack
+
+---
+
+### Frontend
+
 • Framework: React 18+ with TypeScript. Functional components with hooks are preferred over class components.
 • Meta-Framework: Next.js 14+ (App Router) for SSR/SSG and routing.
 • Styling: Tailwind CSS, with shadcn-ui and Radix UI components.
@@ -54,7 +70,9 @@ Frontend
 • Icons: lucide-react for UI icons.
 • Routing: React Router DOM.
 • Bundler/Dev Server: Vite.
-Backend
+
+### Backend
+
 • Runtime: Node.js 20+ LTS.
 • Language: TypeScript for all backend code.
 • Framework: Express.js (with proper middleware structure) or Fastify.
@@ -64,14 +82,18 @@ Backend
 • ORM: Prisma (preferred) or TypeORM for database operations.
 • Machine Learning/Analytics: Python for ML/Analytics tasks.
 • Development Workflow: concurrently and nodemon for running frontend/backend simultaneously.
-Database & Storage
+
+### Database & Storage
+
 • Primary DB: PostgreSQL 15+. All database schema changes must be done through Prisma migrations.
 • Cache: Redis 7+ for caching and session management.
 • Analytics: InfluxDB 2.0 for financial trends and usage analytics.
 • File Storage: Google Cloud Storage, AWS S3, Azure Blob, or S3 for receipts, bank statements, and documents.
 • Search: Elasticsearch (if needed).
 • Database Practices: Proper indexing for performance-critical queries and a migration-first approach for schema changes.
-Infrastructure & DevOps
+
+### Infrastructure & DevOps
+
 • Cloud Provider: Google Cloud (with preference for the Johannesburg africa-south1 region for low latency and POPIA compliance). AWS/Azure are also considered.
 • Containerization: Docker + Docker Compose (for development), with Docker containers for deployment.
 • Deployment Target: Google Cloud Run for serverless services. Kubernetes for more complex orchestration if needed.
@@ -79,7 +101,9 @@ Infrastructure & DevOps
 • Monitoring & Logging: Google Cloud's Operations Suite (Cloud Monitoring, Cloud Logging), DataDog, New Relic, or Prometheus/Grafana.
 • Error Tracking: Sentry.
 • Load Balancer: Google Cloud Load Balancing, AWS ALB, or Azure Load Balancer for traffic distribution and automatic scaling.
-Development Tools
+
+### Development Tools
+
 • Package Manager: pnpm (preferred) or npm.
 • Version Control: Git, hosted on GitHub or GitLab.
 • Code Quality: ESLint + Prettier for configuration enforcement.
@@ -90,8 +114,12 @@ Development Tools
 • AI IDEs & Global Rules: Cursor, Windsurf, Cline, Roo Code can enforce global rules for project awareness, code structure, testing, and task completion.
 • Model Context Protocol (MCP): Enables AI assistants to interact with external services (e.g., Supabase MCP, File system MCP, Git MCP, Brave for web search, Claude Task Master for task management).
 
-🌍 South African Specific Requirements
-Financial Context
+## 🌍 South African Specific Requirements
+
+---
+
+### Financial Context
+
 • Currency: South African Rand (ZAR) with volatility considerations, currency formatting in ZAR.
 • Tax Integration: SARS integration for tax calculations and e-filing assistance (IRP5/IT3a planning).
 • Banking: Integration with major SA banks (FNB, Standard Bank, ABSA, Nedbank, Capitec). Banking details validation for South African account numbers.
@@ -113,8 +141,11 @@ Compliance & Security
 • Data Residency: Preference for South African data centers, EU acceptable.
 • Audit Logging: For financial transactions.
 
-📱 Core Features & Functionality
-The development follows a phased approach.
+## 📱 Core Features & Functionality
+
+---
+
+### The development follows a phased approach.
 
 Phase 1: MVP Features (Months 1-3)
 • User Registration & Profile Setup: Includes SA ID validation, income/expense categorization, and financial goal setting. An email verification flow is also in place.
@@ -135,8 +166,12 @@ Phase 3: AI & Premium Features (Months 7-9)
 • Advanced Planning Tools: Retirement planning, tax optimization strategies, and insurance needs analysis.
 • Subscription Management: A "Subscription Scanner" feature to find forgotten subscriptions and suggest cheaper alternatives.
 
-🔒 Security & Privacy Considerations
-Data Protection
+## 🔒 Security & Privacy Considerations
+
+---
+
+### Data Protection
+
 • Encryption: AES-256 at rest, TLS 1.3 in transit.
 • Authentication: Multi-factor authentication (MFA) required.
 • Authorization: Role-based access control (RBAC).
@@ -156,39 +191,44 @@ General Security Practices
 • Token Management: JWT tokens with proper expiration times and refresh token rotation.
 • Dependency Audits: Regularly audit dependencies for vulnerabilities using npm audit or tools like Snyk.
 
-🎨 Design Principles
+## 🎨 Design Principles
 
-User Experience
-• Mobile-First: Designed primarily for smartphone usage.
-• Offline-Capable: Core features should work without internet connection.
-• Fast Loading: Optimized for slow connections.
-• Intuitive: Minimal learning curve required.
-• Accessible: WCAG 2.1 AA compliance.
-• Clarity & Simplicity: Avoid jargon; break down complex financial concepts into easily digestible chunks.
-• Consistency: Consistent design elements (colors, fonts, button styles, iconography) across the entire platform.
-• Feedback & Progress: Implement visual cues for progress and celebratory messages for achievements.
-• Security Indicators: For premium features, visibly display security badges and clear privacy policy links.
-• Empathetic Onboarding: A gentle, guiding onboarding flow for new users.
+### User Experience
+
+* **Mobile-First**: Designed primarily for smartphone usage.
+* **Offline-Capable**: Core features should work without internet connection.
+* **Fast Loading**: Optimized for slow connections.
+* **Intuitive**: Minimal learning curve required.
+* **Accessible**: WCAG 2.1 AA compliance.
+* **Clarity & Simplicity**: Avoid jargon; break down complex financial concepts into easily digestible chunks.
+* **Consistency**: Consistent design elements (colors, fonts, button styles, iconography) across the entire platform.
+* **Feedback & Progress**: Implement visual cues for progress and celebratory messages for achievements.
+* **Security Indicators**: For premium features, visibly display security badges and clear privacy policy links.
+* **Empathetic Onboarding**: A gentle, guiding onboarding flow for new users.
 Visual Design
-• Overall Vibe: Modern, clean, approachable, empathetic, and empowering. It grounds the "Queen" aspiration in gritty reality, avoiding overly polished imagery.
- 
-Color Scheme:
-◦ Primary: Rich Emerald Green (#0A422D or similar) for money, growth, trust, and the South African landscape. Warm Metallic Gold (#D4AF37 or similar) for value, royalty, and success. These should be prominent in logos, CTAs, headings, icons, and accent borders.
-◦ Secondary/Background: Deep Charcoal/Off-Black (#212121) for depth and contrast. Clean Off-White/Light Cream (#F8F7F4 or #F8F8F8) for body text backgrounds to ensure readability and a clean, airy feel.
-◦ Accent (Sparingly): Ruby Red (#9B111E or #A52A2A) for critical alerts or tertiary CTAs. Magenta/Bright Pink (#E91E63) for high-energy CTAs or interactive elements. Vibrant Leaf Green (#4CAF50) for subtle accents or progress bars.
+* **Overall Vibe**: Modern, clean, approachable, empathetic, and empowering. It grounds the "Queen" aspiration in gritty reality, avoiding overly polished imagery.
 
-Typography:
-◦ Headings & Branding: A sophisticated Serif font (e.g., Playfair Display, Lora, or similar classic/elegant serif) for authoritative and elegant feel, reflecting the "Queen" aspect.
-◦ Body Text & UI Elements: A clean, modern, and highly legible Sans-Serif font (e.g., Montserrat, Lato, Open Sans, Nunito, Roboto) for practical advice readability.
-◦ Accent Text: A decorative, Gothic-style script for special artistic elements, used sparingly.
+### Color Scheme:
 
-Iconography & Motifs:
-◦ Primary Logo: The green money bag with gold embellishments.
-◦ Primary Brand Icon: The green leafy crown. Use as favicon, section headers, loading icon, watermark.
-◦ Secondary Icons: Classic gold crowns for decorative elements or achievement badges.
-◦ UI Icons: Clean, modern, single-weight line-icon set, rendered in Gold for a premium feel. Lucide Icons for UI icons.
+* **Primary**: Rich Emerald Green (**#0A422D** or **#03322A**) for money, growth, trust, and the South African landscape. Warm Metallic Gold (**#D4AF37** or **#B19433**) for value, royalty, and success. These should be prominent in logos, CTAs, headings, icons, and accent borders.
+* **Secondary/Background**: Deep Charcoal/Off-Black (**#212121**) for depth and contrast. Clean Off-White/Light Cream (**#F8F7F4** or **#F8F8F8**) for body text backgrounds to ensure readability and a clean, airy feel.
+* **Accent (Sparingly)**: Ruby Red (**#9B111E** or **#A52A2A**) for critical alerts or tertiary CTAs. Magenta/Bright Pink (**#E91E63**) for high-energy CTAs or interactive elements. Vibrant Leaf Green (**#4CAF50**) for subtle accents or progress bars.
 
-Imagery (Crucial for "No Face" Strategy)
+### Typography:
+
+* **Headings & Branding**: A sophisticated Serif font (e.g., Playfair Display, Lora, or similar classic/elegant serif) for authoritative and elegant feel, reflecting the "Queen" aspect.
+* **Body Text & UI Elements**: A clean, modern, and highly legible Sans-Serif font (e.g., Montserrat, Lato, Open Sans, Nunito, Roboto) for practical advice readability.
+* **Accent Text**: A decorative, Gothic-style script for special artistic elements, used sparingly.
+
+### Iconography & Motifs:
+
+* **Primary Logo**: The green money bag with gold embellishments.
+* **Primary Brand Icon**: The green leafy crown. Use as favicon, section headers, loading icon, watermark.
+* **Secondary Icons**: Classic gold crowns for decorative elements or achievement badges.
+* **UI Icons**: Clean, modern, single-weight line-icon set, rendered in Gold for a premium feel. Lucide Icons for UI icons.
+
+### Imagery (Crucial for "No Face" Strategy)
+
 ◦ Avoid generic stock photos of people; prefer high-quality, warm, authentic imagery.
 ◦ Focus on "no-face" close-ups of hands engaging with money, groceries, cooking, budgeting apps, notebooks.
 ◦ Visually integrate SA context: flat lays of grocery hauls from SA stores (Checkers, Woolworths, Pick n Pay), typical SA food items, subtle background cues of SA homes/landscapes, load-shedding survival hacks.
@@ -196,51 +236,81 @@ Imagery (Crucial for "No Face" Strategy)
 ◦ Employ custom-designed infographics using brand colors to explain financial concepts.
 ◦ For the "R5000 Family Feast" series, use animated infographics, time-lapses of meal prep, and close-ups of ingredients and cooking processes.
 
-🚀 Development Approach
+## 🚀 Development Approach
 
-Methodology
+---
+
+### Methodology
+
 • Agile Development: 2-week sprints.
 • User-Centered Design: Regular user testing.
 • Continuous Integration: Automated testing and deployment.
 • Progressive Enhancement: Core features first, enhancements layered.
-Quality Standards
-• Code Coverage: Minimum 80% test coverage.
-• Performance: Lighthouse score 90+ on mobile; page load time < 2s on 3G.
-• Security: Regular penetration testing and ongoing security audits.
-• Accessibility: WCAG 2.1 AA compliance.
-• Browser Support: Modern browsers (ES2020+).
-• Code Quality: ESLint + Prettier configuration enforced. Strict TypeScript configuration. Small, focused functions (max 20-30 lines). File size limit (no single file should exceed 500 lines; refactor into smaller modules). Consistent naming conventions. JSDoc comments for all exported functions. Inline comments for complex logic (explaining the "why").
-Development Phases
-• Phase 1 (3-4 months): MVP with core budgeting features.
-• Phase 2 (2-3 months): Enhanced features and integrations.
-• Phase 3 (3-4 months): AI features and advanced planning tools.
-Key Development Principles & Workflow
+
+### Quality Standards
+
+    • Code Coverage: Minimum 80% test coverage.
+    • Performance: Lighthouse score 90+ on mobile; page load time < 2s on 3G.
+    • Security: Regular penetration testing and ongoing security audits.
+    • Accessibility: WCAG 2.1 AA compliance.
+    • Browser Support: Modern browsers (ES2020+).
+    • Code Quality: ESLint + Prettier configuration enforced. Strict TypeScript configuration. Small, focused functions (max 20-30 lines). File size limit (no single file should exceed 500 lines; refactor into smaller modules). Consistent naming conventions. JSDoc comments for all exported functions. Inline comments for complex logic (explaining the "why").
+
+### Testing
+
+* **Primary Framework**: **Vitest** is the designated testing framework for this project.
+* **Component Testing**: Done using **React Testing Library** alongside Vitest.
+* **E2E Testing**: To be done with Playwright for critical user journeys.
+* **Test-Driven Foundation**: All new features or logic must be accompanied by tests covering expected use, edge cases, and failure cases.
+
+### AI-Assisted Development Workflow
+
+  * **Contextual Sandbox**: This project utilizes a "contextual sandbox" to guide the Gemini CLI. This is managed through a set of instructional markdown files.
+  * **Hierarchical Context**: The CLI is configured to load a global `CONTEXTUAL-GUARDRAIL.md` file from the project root, as well as more specific `GEMINI.md` files located within application sub-directories (e.g., `apps/api/`). This provides a focused and efficient context for the AI.
+  * **Master Rulebook**: The `CONTEXTUAL-GUARDRAIL.md` file contains the master set of rules and constraints for all development.
+
+### Development Phases
+
+* **Phase 1 (3-4 months)**: MVP with core budgeting features.
+* **Phase 2 (2-3 months)**: Enhanced features and integrations.
+* **Phase 3 (3-4 months)**: AI features and advanced planning tools.
+
+### Key Development Principles & Workflow
+
 • Always read PLANNING.md and check TASK.md before starting new work. If a task isn't listed, add it.
 • Monorepo Structure: Place new features in appropriate apps/* directory; feature-specific logic should be modularized (e.g., apps/web/src/features/budget).
 • Components: Reusable UI components in apps/web/src/components/ui. Shared generic components in @sabq/ui package; web-specific components in apps/web/src/components.
 • Styling: Use Tailwind CSS utility classes; avoid custom CSS unless necessary.
 • Type Safety: Use TypeScript everywhere; avoid any type; define interfaces for data structures.
-• Testing: All new features or logic must be accompanied by tests. Backend API endpoints should have integration tests (Jest + Supertest). Frontend components should have unit/integration tests (Jest + React Testing Library). Aim for at least 80% test coverage on new code. Tests should live in a __tests__ or /tests folder mirroring the main app structure. Include at least one test for expected use, one edge case, and one failure case. Always mock calls to services like DB and LLM in tests.
+• Testing: All new features or logic must be accompanied by tests. Backend API endpoints should have integration tests (Jest + Supertest). Frontend components should have unit/integration tests (Jest + React Testing Library). Aim for at least 80% test coverage on new code. Tests should live in a **tests** or /tests folder mirroring the main app structure. Include at least one test for expected use, one edge case, and one failure case. Always mock calls to services like DB and LLM in tests.
 • Documentation: Add JSDoc comments to all new exported functions. Update README.md if changes affect setup, dependencies, or environment variables.
 • Development Workflow: Create a new feature branch from the main development branch (e.g., feature/budget-creation-wizard). After feature complete and tested, open a pull request with clear description referencing TASK.md. Mark task as complete in TASK.md after PR merge. Add new sub-tasks or TODOs discovered during development to TASK.md. Commit frequently with clear messages.
 • Prisma First: All database schema changes must be done through Prisma migrations (pnpm --filter api prisma migrate dev). Do not alter the database directly.
 • Zod for Validation: All data coming into the API (from client) or external sources must be validated using Zod schemas.
 • Avoid Bad Practices: Never delete or overwrite existing code unless explicitly instructed or part of a TASK.md task. Never hardcode sensitive values. Never skip input validation. Never commit secrets to version control. Never create circular dependencies. Never put business logic in UI components. Never bypass the established authentication system. Never create direct database connections outside of the ORM layer. Never ignore error handling in async operations. Never add dependencies without checking availability. Never use deprecated libraries or methods. Never import entire libraries when only specific functions are needed. Never use different libraries for the same purpose without justification.
 
-📊 Success Metrics
+## 📊 Success Metrics
 
-Technical KPIs
+---
+
+### Technical KPIs
+
 • Performance: Page load time < 2s on 3G.
 • Availability: 99.9% uptime.
 • Security: Zero data breaches.
 • Test Coverage: >80% code coverage.
-Business KPIs
+
+### Business KPIs
+
 • User Engagement: Daily active users.
 • Feature Adoption: Core feature usage rates.
 • User Satisfaction: Net Promoter Score (NPS).
 • Economic Impact: User savings achieved through app usage.
-🔧 Development Environment Setup
+
+## 🔧 Development Environment Setup
+
 Prerequisites
+
 • Node.js 20+ LTS
 • Docker & Docker Compose
 • PostgreSQL 15+
@@ -248,7 +318,7 @@ Prerequisites
 • Git
 • npm or pnpm
 
-Environment Variables
+### Environment Variables
 
 •DATABASE_URL=postgresql://user:pass@localhost:5432/budgetapp
 • REDIS_URL=redis://localhost:6379
@@ -260,6 +330,7 @@ Environment Variables
 Project Structure
 
 project-root/
+
 ├── apps/
 │   ├── web/              # Next.js frontend
 │   ├── api/              # Express.js backend
@@ -269,21 +340,23 @@ project-root/
 │   ├── database/         # Database schemas & migrations
 │   └── shared/           # Shared utilities
 ├── docs/                 # Project documentation
-├── tests/                # Integration tests (__tests__ folder for unit tests)
+├── tests/                # Integration tests (**tests** folder for unit tests)
 └── infrastructure/       # Docker, K8s configs
-Within src/, code should be organized into clearly separated modules, grouped by feature or responsibility, such as components/, pages/, features/, lib/, hooks/, types/, styles/, and __tests__/.
+Within src/, code should be organized into clearly separated modules, grouped by feature or responsibility, such as components/, pages/, features/, lib/, hooks/, types/, styles/, and **tests**/.
 
 Installation & Running
+
 1. Clone the repository: git clone <repository-url>
 2. Navigate into the project directory: cd project-name (e.g., cd sa-budget-queen-coza)
 3. Install dependencies: pnpm install (preferred) or npm install
 4. Copy the .env.example file to a new .env file at the project root (.env.local for Next.js projects).
 5. Populate .env (.env.local) with necessary environment variables.
-6. Start the development environment: pnpm dev or npm run dev (for concurrent frontend/backend development). This typically runs on http://localhost:3000 or http://localhost:5173 if using Vite.
+6. Start the development environment: pnpm dev or npm run dev (for concurrent frontend/backend development). This typically runs on <http://localhost:3000> or <http://localhost:5173> if using Vite.
 
 📝 Notes & Considerations
 
 Development Priorities
+
 1. Security First: All financial data handling must be secure.
 2. Mobile Experience: Primary focus on mobile usability.
 3. Offline Capability: Core features must work offline.

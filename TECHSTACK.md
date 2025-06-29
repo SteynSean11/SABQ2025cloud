@@ -5,13 +5,13 @@ This document is the single source of truth for the technologies, libraries, and
 ## I. Project Management & AI
 
 * **AI Context Documents**:
-    * `PLANNING-SABQ2025.md`: High-level vision, architecture, and constraints.
-    * `TASK.md`: Live sprint board and task tracking.
-    * `TECH-STACK-SABQ2025.md`: This document.
+  * `PLANNING-SABQ2025.md`: High-level vision, architecture, and constraints.
+  * `TASK.md`: Live sprint board and task tracking.
+  * `TECH-STACK-SABQ2025.md`: This document.
 * **AI Development Environment**:
-    * **IDE**: VS Code is preferred.
-    * **AI Assistant**: Gemini Code Assist.
-    * **Workflow**: The development process follows the structured approach outlined in the project's documentation, emphasizing planning, modularity, and frequent testing.
+  * **IDE**: VS Code is preferred.
+  * **AI Assistant**: Gemini Code Assist.
+  * **Workflow**: The development process follows the structured approach outlined in the project's documentation, emphasizing planning, modularity, and frequent testing.
 
 ## II. Core Application Stack
 
@@ -59,9 +59,9 @@ This document is the single source of truth for the technologies, libraries, and
 * **Git Hooks**: Husky and lint-staged.
 * **Component Documentation**: Storybook.
 * **Testing**:
-    * **Unit/Integration**: **Vitest** with **React Testing Library** (Frontend) and for the (Backend).
-    * **E2E**: Playwright or Cypress.
-    * **Practice**: All new features must be accompanied by tests, mocking external services like databases.
+  * **Unit/Integration**: **Vitest** with **React Testing Library** (Frontend) and for the (Backend).
+  * **E2E**: Playwright or Cypress.
+  * **Practice**: All new features must be accompanied by tests, mocking external services like databases.
 
 ## V. Security & Compliance
 

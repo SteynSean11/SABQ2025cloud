@@ -6,16 +6,16 @@
 **Current Sprint**: Sprint 1: Minimum Viable Deployment
 **Next Review**: 2025-07-05
 
-## 🎯 Current Sprint: Minimum Viable Deployment & Technical Excellence
+## 🎯 Sprint 1: Minimum Viable Deployment & Technical Excellence
 
 **Focus**: Deploy a basic static site to Google Cloud Run to establish the full pipeline, then solidify the project's foundation with automated quality checks and testing workflows.
 
 ### 📋 Sprint Goals
 
-- [ ] **Task 1: Basic Webpage Creation** (Priority: High)
-      - [ ] Initialize a new project using Next.js 14+.
-      - [ ] Create a single page with a "Welcome to SA Budget Queen" message.
-      - [ ] Apply basic branding: use primary brand colors and include the logo.
+- [x] **Task 1: Basic Webpage Creation** (Priority: High)
+      - [x] Initialize a new project using Next.js 14+.
+      - [x] Create a single page with a "Welcome to SA Budget Queen" message.
+      - [x] Apply basic branding: use primary brand colors and include the logo.
 
 - [ ] **Task 2: Containerization** (Priority: High)
       - [ ] Create a multi-stage Dockerfile to build and serve the static assets.
@@ -35,21 +35,32 @@
       - [ ] Map the custom domain to the Cloud Run service.
       - [ ] Verify domain ownership and ensure SSL is provisioned.
 
-- [ ] **Task 6: Enforce Code Quality** (Priority: High)
+## 📅 Sprint 2: Technical Excellence & Future-Proofing
+
+Focus: Solidify the project's foundation by implementing our contextual sandbox, automated quality checks, and testing workflows.
+
+- [ ] **Task 6: Implement Hierarchical Context** (Priority: High)
+      - [ ] Create the root CONTEXTUAL-GUARDRAIL.md file with our master rules.
+      - [ ] Create the .gemini/settings.json file to configure the contextFileName hierarchy.
+      - [ ] Create an initial, focused GEMINI.md file in apps/api with backend-specific rules.
+      - [ ] Create an initial, focused GEMINI.md file in apps/web with frontend-specific rules.
+      - [ ] Document code contribution standards in `README.md`.
+
+- [ ] **Task 7: Enforce Code Quality** (Priority: High)
       - [ ] Configure ESLint and Prettier for consistent code style.
       - [ ] Set up Husky and lint-staged for pre-commit checks.
       - [ ] Document code contribution standards in `README.md`.
 
-- [ ] **Task 7: Implement Foundational Tests** (Priority: High)
+- [ ] **Task 8: Implement Foundational Tests** (Priority: High)
       - [ ] Configure Vitest and React Testing Library for the frontend.
       - [ ] Write unit tests for initial UI components.
       - [ ] Set a minimum test coverage target of 80% for new code.
 
-- [ ] **Task 8: Set Up Storybook** (Priority: Medium)
+- [ ] **Task 9: Set Up Storybook** (Priority: Medium)
       - [ ] Add Storybook for component development and documentation.
       - [ ] Create initial stories for reusable UI components.
 
-- [ ] **Task 9: Establish Dependency Audit Workflow** (Priority: Medium)
+- [ ] **Task 10: Establish Dependency Audit Workflow** (Priority: Medium)
       - [ ] Run `pnpm audit` and resolve critical vulnerabilities.
       - [ ] Document a recurring process for dependency reviews.
 
