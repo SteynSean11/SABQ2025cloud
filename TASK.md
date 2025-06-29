@@ -17,9 +17,9 @@
       - [x] Create a single page with a "Welcome to SA Budget Queen" message.
       - [x] Apply basic branding: use primary brand colors and include the logo.
 
-- [ ] **Task 2: Containerization** (Priority: High)
-      - [ ] Create a multi-stage Dockerfile to build and serve the static assets.
-      - [ ] Test the Docker container build and run it locally.
+- [x] **Task 2: Containerization** (Priority: High)
+      - [x] Create a multi-stage Dockerfile to build and serve the static assets.
+      - [x] Test the Docker container build and run it locally.
 
 - [ ] **Task 3: CI/CD Pipeline Setup** (Priority: High)
       - [ ] Configure Google Cloud Build to connect to the source repository.
