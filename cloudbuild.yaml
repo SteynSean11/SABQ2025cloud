@@ -38,7 +38,7 @@ images:
 # You can override these in your Cloud Build trigger settings.
 substitutions:
   _SERVICE_NAME: 'sabq2025cloud-github-trigger'
-  _REGION: 'africa-south1'
+  _REGION: 'us-central1'
 
 options:
   logging: CLOUD_LOGGING_ONLY
