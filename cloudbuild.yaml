@@ -39,6 +39,7 @@ images:
 substitutions:
   _SERVICE_NAME: 'sabq2025cloud-github-trigger'
   _REGION: 'us-central1'
+  _REPO_NAME: 'sabq2025cloud'
 
 options:
   logging: CLOUD_LOGGING_ONLY
