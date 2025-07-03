@@ -17,7 +17,7 @@ export const TestimonialsSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="border rounded-lg p-6 text-center shadow-lg">
-              <p className="text-gray-600 italic mb-4">"{testimonial.quote}"</p>
+              <p className="text-gray-600 italic mb-4">&quot;{testimonial.quote}&quot;</p>
               <p className="font-bold">{testimonial.name}</p>
             </div>
           ))}
