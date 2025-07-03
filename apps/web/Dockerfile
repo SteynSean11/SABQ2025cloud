@@ -3,7 +3,8 @@
 # 1. Installer Stage: Install dependencies
 FROM node:20-slim AS installer
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
+COPY pnpm-lock.yaml ./
 RUN npm install -g pnpm && pnpm install
 
 # 2. Builder Stage: Build the application
