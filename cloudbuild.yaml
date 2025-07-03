@@ -5,8 +5,10 @@ steps:
       - 'build'
       - '-t'
       - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}'
+      - '-f'
+      - 'apps/web/Dockerfile' # Explicitly specify the Dockerfile to use
       - '.'
-    dir: 'apps/web' # Specifies that the build should run in the apps/web directory
+    # The build will now run from the root of the project, giving it access to the entire monorepo
 
   # 2. Push the container image to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'

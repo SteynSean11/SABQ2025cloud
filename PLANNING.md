@@ -6,7 +6,8 @@ tags: [context, planning]
 
 ## Your Project Bible: Personal Budgeting Web App for South African Users
 
-Last Updated: 2025-06-28 (Mimicking last updated from related blueprints) Purpose: This document contains everything your AI coding assistant needs to understand the project: architecture decisions, technology stack, South African requirements, security considerations, and development approach. It's the single source of truth for all technical decisions. It should always be read at the start of any new conversation to understand the project's architecture, goals, style, and constraints.
+Last Updated: 2025-07-03
+Purpose: This document contains everything your AI coding assistant needs to understand the project: architecture decisions, technology stack, South African requirements, security considerations, and development approach. It's the single source of truth for all technical decisions. It should always be read at the start of any new conversation to understand the project's architecture, goals, style, and constraints.
 
 ---
 
@@ -36,11 +37,11 @@ The system is envisioned as a Progressive Web Application (PWA) with offline cap
 
 ### High-Level Components
 
-1. Frontend Layer: A React PWA with offline sync capabilities.
-2. API Gateway: GraphQL with REST fallbacks.
-3. Microservices: Includes User Management, Budget Engine, Transaction Processor, Notification Service, and Reporting Service.
-4. Data Layer: Utilizes PostgreSQL as the primary database, Redis for caching, and InfluxDB for analytics.
-5. External Integrations: Connections to major South African banks, SARS (South African Revenue Service), and economic data APIs.
+1.  Frontend Layer: A React PWA with offline sync capabilities.
+2.  API Gateway: GraphQL with REST fallbacks.
+3.  Microservices: Includes User Management, Budget Engine, Transaction Processor, Notification Service, and Reporting Service.
+4.  Data Layer: Utilizes PostgreSQL as the primary database, Redis for caching, and InfluxDB for analytics.
+5.  External Integrations: Connections to major South African banks, SARS (South African Revenue Service), and economic data APIs.
 
 ### Monorepo Structure
 
@@ -189,43 +190,91 @@ General Security Practices
 • API Security: Implement rate limiting on API endpoints. CORS configuration and security headers.
 • Password Security: Secure password hashing using bcrypt.
 • Token Management: JWT tokens with proper expiration times and refresh token rotation.
-• Dependency Audits: Regularly audit dependencies for vulnerabilities using npm audit or tools like Snyk.
+• Dependency Audits: Regularly audit dependencies for vulnerabilities using `pnpm audit` or tools like Snyk. A documented workflow is essential for maintaining security.
 
 ## 🎨 Design Principles
 
 ### User Experience
 
-* **Mobile-First**: Designed primarily for smartphone usage.
-* **Offline-Capable**: Core features should work without internet connection.
-* **Fast Loading**: Optimized for slow connections.
-* **Intuitive**: Minimal learning curve required.
-* **Accessible**: WCAG 2.1 AA compliance.
-* **Clarity & Simplicity**: Avoid jargon; break down complex financial concepts into easily digestible chunks.
-* **Consistency**: Consistent design elements (colors, fonts, button styles, iconography) across the entire platform.
-* **Feedback & Progress**: Implement visual cues for progress and celebratory messages for achievements.
-* **Security Indicators**: For premium features, visibly display security badges and clear privacy policy links.
-* **Empathetic Onboarding**: A gentle, guiding onboarding flow for new users.
-Visual Design
-* **Overall Vibe**: Modern, clean, approachable, empathetic, and empowering. It grounds the "Queen" aspiration in gritty reality, avoiding overly polished imagery.
+*   **Mobile-First**: Designed primarily for smartphone usage.
+*   **Offline-Capable**: Core features should work without internet connection.
+*   **Fast Loading**: Optimized for slow connections.
+*   **Intuitive**: Minimal learning curve required.
+*   **Accessible**: WCAG 2.1 AA compliance.
+*   **Clarity & Simplicity**: Avoid jargon; break down complex financial concepts into easily digestible chunks.
+*   **Consistency**: Consistent design elements (colors, fonts, button styles, iconography) across the entire platform.
+*   **Feedback & Progress**: Implement visual cues for progress and celebratory messages for achievements.
+*   **Security Indicators**: For premium features, visibly display security badges and clear privacy policy links.
+*   **Empathetic Onboarding**: A gentle, guiding onboarding flow for new users.
 
-### Color Scheme:
+### Visual Design
 
-* **Primary**: Rich Emerald Green (**#0A422D** or **#03322A**) for money, growth, trust, and the South African landscape. Warm Metallic Gold (**#D4AF37** or **#B19433**) for value, royalty, and success. These should be prominent in logos, CTAs, headings, icons, and accent borders.
-* **Secondary/Background**: Deep Charcoal/Off-Black (**#212121**) for depth and contrast. Clean Off-White/Light Cream (**#F8F7F4** or **#F8F8F8**) for body text backgrounds to ensure readability and a clean, airy feel.
-* **Accent (Sparingly)**: Ruby Red (**#9B111E** or **#A52A2A**) for critical alerts or tertiary CTAs. Magenta/Bright Pink (**#E91E63**) for high-energy CTAs or interactive elements. Vibrant Leaf Green (**#4CAF50**) for subtle accents or progress bars.
+*   **Overall Vibe**: Modern, clean, approachable, empathetic, and empowering. It grounds the "Queen" aspiration in gritty reality, avoiding overly polished imagery.
 
-### Typography:
+*   **Color Scheme**:
+    *   **Primary**: Rich Emerald Green (**#0A422D** or **#03322A**) for money, growth, trust, and the South African landscape. Warm Metallic Gold (**#D4AF37** or **#B19433**) for value, royalty, and success. These should be prominent in logos, CTAs, headings, icons, and accent borders.
+    *   **Secondary/Background**: Deep Charcoal/Off-Black (**#212121**) for depth and contrast. Clean Off-White/Light Cream (**#F8F7F4** or **#F8F8F8**) for body text backgrounds to ensure readability and a clean, airy feel.
+    *   **Accent (Sparingly)**: Ruby Red (**#9B111E** or **#A52A2A**) for critical alerts or tertiary CTAs. Magenta/Bright Pink (**#E91E63**) for high-energy CTAs or interactive elements. Vibrant Leaf Green (**#4CAF50**) for subtle accents or progress bars.
 
-* **Headings & Branding**: A sophisticated Serif font (e.g., Playfair Display, Lora, or similar classic/elegant serif) for authoritative and elegant feel, reflecting the "Queen" aspect.
-* **Body Text & UI Elements**: A clean, modern, and highly legible Sans-Serif font (e.g., Montserrat, Lato, Open Sans, Nunito, Roboto) for practical advice readability.
-* **Accent Text**: A decorative, Gothic-style script for special artistic elements, used sparingly.
+*   **Typography**:
+    *   **Headings & Branding**: A sophisticated Serif font (e.g., Playfair Display, Lora, or similar classic/elegant serif) for authoritative and elegant feel, reflecting the "Queen" aspect.
+    *   **Body Text & UI Elements**: A clean, modern, and highly legible Sans-Serif font (e.g., Montserrat, Lato, Open Sans, Nunito, Roboto) for practical advice readability.
+    *   **Accent Text**: A decorative, Gothic-style script for special artistic elements, used sparingly.
 
-### Iconography & Motifs:
+*   **Iconography & Motifs**:
+    *   **Primary Logo**: The green money bag with gold embellishments.
+    *   **Primary Brand Icon**: The green leafy crown. Use as favicon, section headers, loading icon, watermark.
+    *   **Secondary Icons**: Classic gold crowns for decorative elements or achievement badges.
+    *   **UI Icons**: Clean, modern, single-weight line-icon set, rendered in Gold for a premium feel. Lucide Icons for UI icons.
 
-* **Primary Logo**: The green money bag with gold embellishments.
-* **Primary Brand Icon**: The green leafy crown. Use as favicon, section headers, loading icon, watermark.
-* **Secondary Icons**: Classic gold crowns for decorative elements or achievement badges.
-* **UI Icons**: Clean, modern, single-weight line-icon set, rendered in Gold for a premium feel. Lucide Icons for UI icons.
+### Style Guide
+
+This style guide is the single source of truth for all visual design and ensures a consistent user experience. All new components and pages must adhere to these guidelines.
+
+#### 1. Colors
+
+The color palette is designed to be modern, trustworthy, and empowering.
+
+| Role                 | Color Name             | Hex Code                               | Usage                                                              |
+| -------------------- | ---------------------- | -------------------------------------- | ------------------------------------------------------------------ |
+| **Primary Action**   | Rich Emerald Green     | `#0A422D` or `#03322A`                  | Primary buttons, active links, key headings, and important icons.  |
+| **Primary Accent**   | Warm Metallic Gold     | `#D4AF37` or `#B19433`                  | Secondary buttons, accent borders, and decorative elements.        |
+| **Background**       | Clean Off-White/Cream  | `#F8F7F4` or `#F8F8F8`                  | Main background color for content areas to ensure readability.     |
+| **Text & Contrast**  | Deep Charcoal/Off-Black| `#212121`                              | Body text, headings, and other UI elements for high contrast.      |
+| **Critical Alert**   | Ruby Red               | `#9B111E` or `#A52A2A`                  | Error messages, critical alerts, and destructive action buttons.   |
+| **High-Energy CTA**  | Magenta/Bright Pink    | `#E91E63`                              | High-priority calls-to-action or interactive promotional elements. |
+| **Subtle Accent**    | Vibrant Leaf Green     | `#4CAF50`                              | Success states, progress indicators, or subtle positive feedback.  |
+
+#### 2. Typography
+
+Typography is chosen for its blend of elegance and readability.
+
+| Element                   | Font Family                               | Weight(s)         | Notes                                                              |
+| ------------------------- | ----------------------------------------- | ----------------- | ------------------------------------------------------------------ |
+| **Headings & Branding**   | Playfair Display, Lora (or similar Serif) | Bold, Semi-Bold   | Used for `h1`, `h2`, `h3` to convey authority and elegance.        |
+| **Body Text & UI**        | Montserrat, Lato, Open Sans (Sans-Serif)  | Regular, Medium   | Used for paragraphs, labels, and all UI elements for clarity.      |
+| **Accent/Decorative**     | (Gothic-style script)                     | Regular           | Used sparingly for special artistic elements or branding moments.  |
+
+#### 3. Spacing & Layout
+
+We use a consistent, 4-pixel based grid system for all spacing (margins, padding, gaps). This aligns with Tailwind CSS's default spacing scale.
+
+-   **Base Unit**: `1 unit = 4px`
+-   **Small Gaps**: `2 units (8px)`, `3 units (12px)`
+-   **Standard Gaps**: `4 units (16px)`, `6 units (24px)`
+-   **Large Gaps**: `8 units (32px)`, `12 units (48px)`
+
+#### 4. Component States
+
+All interactive components must have visually distinct states to provide clear user feedback.
+
+| State      | Style                                                              |
+| ---------- | ------------------------------------------------------------------ |
+| **Default**| The component's standard appearance.                               |
+| **Hover**  | A subtle change in background color, border, or shadow to indicate interactivity. |
+| **Focus**  | A visible outline (e.g., a ring) to aid keyboard navigation and accessibility. |
+| **Active** | A more pronounced change (e.g., darker background) to show the component is being pressed. |
+| **Disabled**| Reduced opacity and the `not-allowed` cursor to indicate the component is non-interactive. |
 
 ### Imagery (Crucial for "No Face" Strategy)
 
@@ -258,10 +307,10 @@ Visual Design
 
 ### Testing
 
-* **Primary Framework**: **Vitest** is the designated testing framework for this project.
-* **Component Testing**: Done using **React Testing Library** alongside Vitest.
-* **E2E Testing**: To be done with Playwright for critical user journeys.
-* **Test-Driven Foundation**: All new features or logic must be accompanied by tests covering expected use, edge cases, and failure cases.
+*   **Primary Framework**: **Vitest** is the designated testing framework for this project.
+*   **Component Testing**: Done using **React Testing Library** alongside Vitest.
+*   **E2E Testing**: To be done with Playwright for critical user journeys.
+*   **Test-Driven Foundation**: All new features or logic must be accompanied by tests covering expected use, edge cases, and failure cases.
 
 ### AI-Assisted Development Workflow
 
@@ -269,11 +318,21 @@ Visual Design
   * **Hierarchical Context**: The CLI is configured to load a global `CONTEXTUAL-GUARDRAIL.md` file from the project root, as well as more specific `GEMINI.md` files located within application sub-directories (e.g., `apps/api/`). This provides a focused and efficient context for the AI.
   * **Master Rulebook**: The `CONTEXTUAL-GUARDRAIL.md` file contains the master set of rules and constraints for all development.
 
+### Dependency Audit Workflow
+
+A recurring process for reviewing dependencies is crucial for project security.
+
+1.  **Run the Audit**: Regularly run `pnpm audit` to check for known vulnerabilities in project dependencies.
+2.  **Review Vulnerabilities**: Analyze the audit report to identify the severity and impact of each vulnerability.
+3.  **Apply Updates**: Whenever possible, update packages to a non-vulnerable version using `pnpm update [package-name]`.
+4.  **Manual Review**: If a direct update is not available, investigate the vulnerability to assess its actual impact on the project. Document any findings and mitigation strategies.
+5.  **Documentation**: Keep a log of audited dependencies and any actions taken.
+
 ### Development Phases
 
-* **Phase 1 (3-4 months)**: MVP with core budgeting features.
-* **Phase 2 (2-3 months)**: Enhanced features and integrations.
-* **Phase 3 (3-4 months)**: AI features and advanced planning tools.
+*   **Phase 1 (3-4 months)**: MVP with core budgeting features.
+*   **Phase 2 (2-3 months)**: Enhanced features and integrations.
+*   **Phase 3 (3-4 months)**: AI features and advanced planning tools.
 
 ### Key Development Principles & Workflow
 
@@ -342,26 +401,26 @@ project-root/
 ├── docs/                 # Project documentation
 ├── tests/                # Integration tests (**tests** folder for unit tests)
 └── infrastructure/       # Docker, K8s configs
-Within src/, code should be organized into clearly separated modules, grouped by feature or responsibility, such as components/, pages/, features/, lib/, hooks/, types/, styles/, and **tests**/.
+Within src/, code should be organized into clearly separated modules, grouped by feature or responsibility, such as components/, pages/, features/, lib/, hooks/, types/, styles/, stories/, and **tests**/.
 
 Installation & Running
 
-1. Clone the repository: git clone <repository-url>
-2. Navigate into the project directory: cd project-name (e.g., cd sa-budget-queen-coza)
-3. Install dependencies: pnpm install (preferred) or npm install
-4. Copy the .env.example file to a new .env file at the project root (.env.local for Next.js projects).
-5. Populate .env (.env.local) with necessary environment variables.
-6. Start the development environment: pnpm dev or npm run dev (for concurrent frontend/backend development). This typically runs on <http://localhost:3000> or <http://localhost:5173> if using Vite.
+1.  Clone the repository: git clone <repository-url>
+2.  Navigate into the project directory: cd project-name (e.g., cd sa-budget-queen-coza)
+3.  Install dependencies: pnpm install (preferred) or npm install
+4.  Copy the .env.example file to a new .env file at the project root (.env.local for Next.js projects).
+5.  Populate .env (.env.local) with necessary environment variables.
+6.  Start the development environment: pnpm dev or npm run dev (for concurrent frontend/backend development). This typically runs on <http://localhost:3000> or <http://localhost:5173> if using Vite.
 
 📝 Notes & Considerations
 
 Development Priorities
 
-1. Security First: All financial data handling must be secure.
-2. Mobile Experience: Primary focus on mobile usability.
-3. Offline Capability: Core features must work offline.
-4. South African Context: Cultural and economic relevance is crucial.
-5. Performance: Fast loading even on slow connections.
+1.  Security First: All financial data handling must be secure.
+2.  Mobile Experience: Primary focus on mobile usability.
+3.  Offline Capability: Core features must work offline.
+4.  South African Context: Cultural and economic relevance is crucial.
+5.  Performance: Fast loading even on slow connections.
 
 Risk Mitigation
 • Banking Integration: Have fallback for manual bank data import.

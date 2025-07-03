@@ -56,31 +56,96 @@ Focus: Solidify the project's foundation by implementing our contextual sandbox,
       - [x] Write unit tests for initial UI components.
       - [x] Set a minimum test coverage target of 80% for new code.
 
-- [ ] **Task 9: Set Up Storybook** (Priority: Medium)
-      - [ ] Add Storybook for component development and documentation.
-      - [ ] Create initial stories for reusable UI components.
+- [x] **Task 9: Set Up Storybook** (Priority: Medium)
+      - [x] Add Storybook for component development and documentation.
+      - [x] Create initial stories for reusable UI components.
 
-- [ ] **Task 10: Establish Dependency Audit Workflow** (Priority: Medium)
-      - [ ] Run `pnpm audit` and resolve critical vulnerabilities.
-      - [ ] Document a recurring process for dependency reviews.
+- [x] **Task 10: Establish Dependency Audit Workflow** (Priority: Medium)
+      - [x] Run `pnpm audit` and resolve critical vulnerabilities.
+      - [x] Document a recurring process for dependency reviews.
 
 ## 📚 Ongoing Habits & Documentation
 
 - [ ] **Update README.md**: This is a continuous task. The `README.md` should be updated after any significant changes, including new features, dependency updates, or environment variable changes to keep it a reliable source of truth for developers.
 
-## 📅 Sprint Backlog (Next Sprints)
+## 📅 Sprint 3: Design System, Homepage, State & UI Feedback
 
-### Content and Feature Expansion
+**Focus**: Establish a formal style guide, build a fully-featured homepage, set up global state management, and implement a toast notification system.
 
-- [ ] Implement the full homepage UI/UX with all content sections (templates, tips, testimonials).
-- [ ] Add functional download links for the initial budget templates.
-- [ ] Ensure all pages and components are fully mobile-responsive.
+- [x] **Task 11: Create a Formal Style Guide** (Priority: High)
+      - [x] Add a new "Style Guide" section to `PLANNING.md` under "Design Principles".
+      - [x] Document primary/secondary colors, typography scales (headings, body), spacing units, and common component states (default, hover, disabled).
+- [x] **Task 12: Design & Structure Homepage Layout** (Priority: High)
+      - [x] Create a new, responsive layout component for the homepage using Tailwind CSS, adhering to the new style guide.
+      - [x] Implement a header with the brand logo and navigation links.
+      - [x] Implement a footer with essential links (About, Contact, Privacy Policy).
+- [x] **Task 13: Implement Homepage Content Sections** (Priority: High)
+      - [x] Develop a "Hero" section with a compelling headline and a primary call-to-action (CTA).
+      - [x] Create a "Budget Templates" section to showcase available templates.
+      - [x] Create a "Financial Tips" section to display a feed of articles or snippets.
+      - [x] Create a "Testimonials" section to build social proof.
+- [x] **Task 14: Add Functional Download Links** (Priority: High)
+      - [x] Upload initial budget template files (e.g., PDF, Excel) to the `public` directory.
+      - [x] Create a reusable `DownloadButton` component.
+      - [x] Link the buttons in the "Budget Templates" section to the corresponding files.
+- [x] **Task 15: Set Up Global State with Zustand** (Priority: High)
+      - [x] Install Zustand and create an initial store for managing global UI state.
+      - [x] Integrate the Zustand provider into the root layout of the application.
+      - [x] Document the basic usage of the store in the `README.md`.
+- [x] **Task 16: Implement UI Feedback System** (Priority: Medium)
+      - [x] Integrate a toast notification library (e.g., `react-hot-toast`).
+      - [x] Create a global function to trigger success, error, and info notifications from anywhere in the app.
+- [x] **Task 17: Ensure Full Mobile Responsiveness** (Priority: High)
+      - [x] Rigorously test and refine the homepage layout across various screen sizes.
+      - [x] Ensure all images, text, and interactive elements are optimized for mobile viewing.
 
-### Transition to Dynamic Application
+## 📅 Sprint 4: Backend Foundation & API Implementation
 
-- [ ] Design and implement the backend API using Express.js.
-- [ ] Develop the user authentication system with JWTs and password hashing.
-- [ ] Set up the PostgreSQL database on Cloud SQL and configure Prisma for database access.
+**Focus**: Establish the backend infrastructure using Express.js and Prisma, and develop the initial API endpoints required for user management.
+
+- [ ] **Task 18: Initialize Express.js Backend** (Priority: High)
+      - [ ] Set up a new Express.js application in the `apps/api` directory.
+      - [ ] Configure TypeScript, ESLint, and Prettier for the backend.
+      - [ ] Create a basic server structure with middleware for logging, CORS, and error handling.
+- [ ] **Task 19: Set Up PostgreSQL & Prisma** (Priority: High)
+      - [ ] Create a new PostgreSQL database on a local or cloud instance.
+      - [ ] Initialize Prisma in the `apps/api` directory and connect it to the database.
+      - [ ] Define the initial `User` schema in `schema.prisma`.
+      - [ ] Run the first migration to create the `users` table.
+- [ ] **Task 20: Implement User API Endpoints** (Priority: High)
+      - [ ] Create a `user.controller.ts` and `user.service.ts` to handle business logic.
+      - [ ] Develop a `POST /api/users/register` endpoint with Zod validation for user input.
+      - [ ] Develop a `POST /api/users/login` endpoint.
+      - [ ] Write integration tests for the new endpoints using Vitest and Supertest.
+
+## 📅 Sprint 5: User Authentication with Passport.js
+
+**Focus**: Implement a secure, industry-standard authentication system using Passport.js with a JWT strategy.
+
+- [ ] **Task 21: Implement JWT Authentication with Passport.js** (Priority: High)
+      - [ ] Install `passport`, `passport-jwt`, and their corresponding `@types`.
+      - [ ] Configure the Passport JWT strategy to verify tokens and protect API endpoints.
+      - [ ] Integrate Passport middleware into the Express app.
+      - [ ] Update the `login` endpoint to generate a JWT upon successful authentication.
+      - [ ] Implement password hashing using `bcrypt` during user registration.
+- [ ] **Task 22: Frontend Authentication Integration** (Priority: Medium)
+      - [ ] Create a `useAuth` hook and an `AuthContext` to manage authentication state in the frontend, leveraging the Zustand store.
+      - [ ] Develop a login form and connect it to the `/api/users/login` endpoint.
+      - [ ] Implement a secure logout function that clears the JWT from the client.
+- [ ] **Task 23: Implement Token Refresh Strategy** (Priority: Medium)
+      - [ ] Create an endpoint to issue a new access token using a refresh token.
+      - [ ] Implement logic on the frontend to automatically refresh expired tokens.
+- [ ] **Task 24: Secure Sensitive Data** (Priority: High)
+      - [ ] Ensure all API keys, database credentials, and JWT secrets are stored securely in environment variables and are not exposed in the client-side code.
+
+## 📅 Sprint 6: Advanced Features & Integrations
+
+**Focus**: Enhance the user experience with social login options and begin work on core application features.
+
+- [ ] **Task 25: Implement Social Login (OAuth)** (Priority: Medium)
+      - [ ] Add a Passport.js strategy for a social provider (e.g., `passport-google-oauth20`).
+      - [ ] Add new API endpoints to handle the OAuth flow and callback.
+      - [ ] Update the frontend to include a "Login with Google" button.
 
 ## 🐛 Discovered During Development
 
@@ -89,6 +154,7 @@ Focus: Solidify the project's foundation by implementing our contextual sandbox,
 *Items discovered during development that need attention.*
 
 - The `storybook@latest init` command can hang or fail due to command syntax or network issues. Verbose logging (`pnpm --reporter=verbose ...`) is the first step to debug.
+- [ ] **Upgrade to TypeScript 6**: Once TypeScript 6 is released as a stable version, plan and execute the upgrade to leverage new language features and improvements.
 
 ### Bug Fixes
 

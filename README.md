@@ -40,6 +40,21 @@ To get a local copy up and running, follow these simple steps.
    pnpm dev
    ```
 
+## State Management
+
+This project uses Zustand for global state management. The main store is defined in `apps/web/src/store/index.ts`.
+
+To use the store in a component:
+
+```tsx
+import { useStore } from '../store';
+
+const MyComponent = () => {
+  const { someState, someAction } = useStore();
+  // ...
+};
+```
+
 ## Development Workflow
 
 This project uses a set of markdown files to guide development and ensure consistency. Before starting any new work, please familiarize yourself with the following documents:
@@ -57,6 +72,8 @@ Contributions are what make the open source community such an amazing place to l
 ### Code Quality
 
 This project uses ESLint, Prettier, and lint-staged to enforce code quality and consistency. A pre-commit hook is configured to automatically format and lint your code before you commit. This ensures that all code in the repository adheres to the same standards.
+
+For more details on security practices, including the dependency audit workflow, please see the [`PLANNING.md`](PLANNING.md) file.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
