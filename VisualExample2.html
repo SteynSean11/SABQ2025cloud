@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Budget Queen - Brand Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful (Adapted) -->
+    <!-- Application Structure Plan: The infographic SPA is designed as a narrative journey through the SA Budget Queen brand identity. It starts with a high-impact "Hook" (Core Essence), moves to "Data Overview" (Brand Pillars), "Key Trends" (Visual Identity), "In-Depth Analysis" (Web Components & User Journey), and concludes with a "Call to Action." This structure was chosen to tell a compelling story, making the abstract concepts of the brand guide tangible and easy to understand for stakeholders, designers, and developers. It transforms a static document into an engaging, explorable experience. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Brand Tone (Empowering, Practical, etc.). Goal: Inform. Viz: Styled Text Cards (HTML/CSS). Interaction: Hover-grow effect. Justification: Quickly communicates the core brand feelings in a visually organized way. Method: Tailwind CSS.
+        - Report Info: Key Metrics (hypothetical user stats). Goal: Inform. Viz: Single Big Numbers. Interaction: Animated count-up on scroll. Justification: Makes statistics feel dynamic and impactful, reinforcing the brand's success. Method: Vanilla JS.
+        - Report Info: Color Palette. Goal: Inform. Viz: Interactive Color Swatches. Interaction: Click to apply color to sample text. Justification: Provides a hands-on feel for the brand's visual language. Method: Vanilla JS.
+        - Report Info: Budgeting Data. Goal: Compare/Inform. Viz: Donut Chart. Interaction: Hover for tooltips. Justification: Demonstrates the primary data visualization style for the app, showing a clear, simple budget breakdown as an example. Method: Chart.js (Canvas).
+        - Report Info: User Journey (Free to Premium). Goal: Organize/Inform. Viz: Flow Chart. Interaction: Subtle highlights on hover. Justification: Clearly visualizes a core business process without using complex graphics, adhering to the NO SVG rule. Method: HTML/CSS with Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { background-color: #F8F8F8; font-family: 'Lato', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        .bg-brand-emerald { background-color: #0A422D; }
+        .text-brand-emerald { color: #0A422D; }
+        .bg-brand-gold { background-color: #D4AF37; }
+        .text-brand-gold { color: #D4AF37; }
+        .bg-brand-cream { background-color: #F8F8F8; }
+        .bg-accent-maroon { background-color: #A52A2A; }
+        .text-accent-maroon { color: #A52A2A; }
+        .bg-accent-leaf { background-color: #4CAF50; }
+        .text-accent-leaf { color: #4CAF50; }
+        .bg-accent-plum { background-color: #4B0082; }
+        .text-accent-plum { color: #4B0082; }
+        .chart-container { position: relative; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .flowchart-step { border-left-width: 4px; }
+        .flowchart-arrow { content: ''; position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Header/Hook Section -->
+        <header class="text-center py-12 border-b-4 border-brand-gold">
+            <h1 class="text-5xl md:text-7xl font-black text-brand-emerald tracking-tight">SA Budget Queen</h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-600">The Visual Identity of Accessible Financial Royalty</p>
+        </header>
+
+        <!-- Brand Pillars Section -->
+        <section class="py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-emerald">Our Core Essence</h2>
+            <p class="text-lg text-center mt-2 max-w-3xl mx-auto text-gray-600">Bridging aspiration with real-life, pragmatic budgeting for every South African. Our tone is the foundation of our kingdom.</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 mt-12 text-center">
+                <div class="bg-white p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-3xl mb-2">&#128170;</div><h3 class="font-bold text-brand-emerald">Empowering</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                     <div class="text-3xl mb-2">&#128221;</div><h3 class="font-bold text-brand-emerald">Practical</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-3xl mb-2">&#129309;</div><h3 class="font-bold text-brand-emerald">Relatable</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-3xl mb-2">&#128737;</div><h3 class="font-bold text-brand-emerald">Trustworthy</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-3xl mb-2">&#127793;</div><h3 class="font-bold text-brand-emerald">Hopeful</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-3xl mb-2">&#128293;</div><h3 class="font-bold text-brand-emerald">Gritty & Real</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Identity Section -->
+        <section class="py-16 bg-brand-emerald text-white rounded-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center">A Royal Aesthetic</h2>
+            <p class="text-lg text-center mt-2 max-w-3xl mx-auto text-stone-300">Our visual identity conveys trust, growth, and a touch of grounded luxury.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-12 px-6 md:px-12">
+                <!-- Colors -->
+                <div>
+                    <h3 class="text-2xl font-bold border-b-2 border-brand-gold pb-2">The Palette</h3>
+                    <p class="mt-4 text-stone-300">Click a color to see it in action.</p>
+                    <div class="flex flex-wrap gap-4 mt-4" id="color-palette">
+                        <div class="w-12 h-12 rounded-full cursor-pointer bg-brand-emerald border-2 border-white" data-color="#0A422D"></div>
+                        <div class="w-12 h-12 rounded-full cursor-pointer bg-brand-gold border-2 border-white" data-color="#D4AF37"></div>
+                        <div class="w-12 h-12 rounded-full cursor-pointer bg-accent-plum border-2 border-white" data-color="#4B0082"></div>
+                        <div class="w-12 h-12 rounded-full cursor-pointer bg-accent-maroon border-2 border-white" data-color="#A52A2A"></div>
+                        <div class="w-12 h-12 rounded-full cursor-pointer bg-accent-leaf border-2 border-white" data-color="#4CAF50"></div>
+                    </div>
+                    <div id="typography-demo" class="mt-6 p-4 rounded-lg bg-brand-cream transition-colors duration-300">
+                        <h4 class="text-2xl font-serif text-brand-emerald">Heading: Playfair Display</h4>
+                        <p class="text-md text-gray-700 mt-1">Body Text: This is Lato, chosen for its excellent readability on all devices.</p>
+                    </div>
+                </div>
+                <!-- Icons & Logos -->
+                <div>
+                    <h3 class="text-2xl font-bold border-b-2 border-brand-gold pb-2">Logos & Iconography</h3>
+                     <p class="mt-4 text-stone-300">Our crown motifs are central to our brand, representing growth and achievement.</p>
+                    <div class="mt-4 grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-brand-cream/10 p-4 rounded-lg">
+                            <img src="https://storage.googleapis.com/gemini-prod/images/SABQ2025crown_HiRes_Gem.png" alt="Green Leaf Crown" class="w-16 h-16 mx-auto mb-2"/>
+                            <p class="font-bold">Leaf Crown</p>
+                            <p class="text-sm text-stone-300">Growth & The Journey</p>
+                        </div>
+                        <div class="bg-brand-cream/10 p-4 rounded-lg">
+                            <div class="font-serif text-5xl text-brand-gold">&#9813;</div>
+                            <p class="font-bold">Gold Crown</p>
+                            <p class="text-sm text-stone-300">Achievement & Premium</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data & Components Section -->
+        <section class="py-16">
+             <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-emerald">Telling Stories with Data</h2>
+             <p class="text-lg text-center mt-2 max-w-3xl mx-auto text-gray-600">We make complex financial data easy to understand through clean, clear visualizations and practical components.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mt-12">
+                <!-- Big Numbers -->
+                <div class="lg:col-span-2 space-y-8">
+                     <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                        <h3 class="text-2xl text-brand-emerald font-bold">Community Growth</h3>
+                        <p class="font-black text-6xl text-accent-leaf mt-2" data-target="15000">0</p>
+                        <p class="text-gray-500">Empowered Members</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                        <h3 class="text-2xl text-brand-emerald font-bold">Financial Impact</h3>
+                        <p class="font-black text-6xl text-accent-maroon mt-2">R<span data-target="2500000">0</span></p>
+                         <p class="text-gray-500">Saved Collectively</p>
+                    </div>
+                </div>
+                <!-- Chart -->
+                <div class="lg:col-span-3 bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl text-brand-emerald font-bold text-center">Typical Budget Breakdown</h3>
+                    <p class="text-center text-gray-600 mt-1">A sample visualization showing how we make finances clear. This donut chart shows a common budget allocation for a typical user.</p>
+                    <div class="chart-container mt-4">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flowchart Section -->
+        <section class="py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-emerald">The Queen's Journey</h2>
+            <p class="text-lg text-center mt-2 max-w-3xl mx-auto text-gray-600">We guide users from free, valuable education to premium, life-changing tools with a clear and supportive process.</p>
+            <div class="mt-12 max-w-4xl mx-auto space-y-8">
+                <!-- Step 1 -->
+                <div class="relative flex items-center">
+                    <div class="flowchart-step border-accent-leaf bg-white p-6 rounded-lg shadow-lg w-full">
+                        <h3 class="font-bold text-xl text-brand-emerald">1. Start the Journey (Free)</h3>
+                        <p class="text-gray-600 mt-1">Users discover the brand and access free resources like blogs, downloadable templates, and community tips.</p>
+                    </div>
+                    <div class="flowchart-arrow border-l-accent-leaf hidden md:block"></div>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative flex items-center">
+                     <div class="flowchart-step border-brand-gold bg-white p-6 rounded-lg shadow-lg w-full">
+                        <h3 class="font-bold text-xl text-brand-emerald">2. Engage with Tools</h3>
+                        <p class="text-gray-600 mt-1">Users begin using interactive tools like budget calculators and savings trackers, seeing the immediate value.</p>
+                    </div>
+                     <div class="flowchart-arrow border-l-brand-gold hidden md:block"></div>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative flex items-center">
+                    <div class="flowchart-step border-accent-maroon bg-white p-6 rounded-lg shadow-lg w-full">
+                        <h3 class="font-bold text-xl text-brand-emerald">3. Ascend to The Royal Vault (Premium)</h3>
+                        <p class="text-gray-600 mt-1">Ready for mastery, users subscribe for advanced features, personalized coaching, and exclusive content.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapLabel = (label) => {
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) lines.push(currentLine);
+                return lines;
+            };
+
+            const palette = document.getElementById('color-palette');
+            const demoText = document.getElementById('typography-demo');
+            palette.addEventListener('click', (e) => {
+                if (e.target.dataset.color) {
+                    demoText.style.borderColor = e.target.dataset.color;
+                    demoText.querySelectorAll('h4, p').forEach(el => el.style.color = e.target.dataset.color);
+                }
+            });
+
+            const counters = document.querySelectorAll('[data-target]');
+            const animateCounter = (el) => {
+                const target = +el.dataset.target;
+                const duration = 1500;
+                let start = 0;
+                const stepTime = Math.abs(Math.floor(duration / target));
+                const timer = setInterval(() => {
+                    start += Math.ceil(target / (duration/10));
+                    if(start > target) start = target;
+                    el.innerText = start.toLocaleString('en-ZA');
+                    if (start === target) {
+                        clearInterval(timer);
+                    }
+                }, 10);
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                       animateCounter(entry.target.querySelector('[data-target]'));
+                       observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(counter => {
+                const parent = counter.parentElement;
+                if(parent) observer.observe(parent);
+            });
+
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Groceries & Food', 'Housing & Utilities', 'Transport', 'Debt Repayment', 'Savings & Investment', 'Personal & Other'].map(wrapLabel),
+                    datasets: [{
+                        label: 'Budget',
+                        data: [30, 25, 15, 15, 10, 5],
+                        backgroundColor: ['#0A422D', '#4CAF50', '#D4AF37', '#A52A2A', '#4B0082', '#898989'],
+                        borderColor: '#F8F8F8',
+                        borderWidth: 4,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#0A422D',
+                            bodyColor: '#333333',
+                            borderColor: '#D4AF37',
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    return Array.isArray(label) ? label.join(' ') : label;
+                                },
+                                label: function(context) {
+                                    return ` ${context.parsed}% of Budget`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

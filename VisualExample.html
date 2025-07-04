@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Budget Queen - Live Like Royalty on Any Budget</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: SA Budget Queen Primary Palette (Emerald, Gold, Off-White) -->
+    <!-- Application Structure Plan: The SPA is structured as a single-page homepage mockup based directly on the Brand Identity document. This includes a global header, a hero section, social proof, a value showcase with an interactive chart, featured content, and a footer. This structure was chosen because the source report is a brand guide that explicitly outlines a homepage design, making this the most direct and effective way to translate the brand into an interactive, explorable format for stakeholders. The user flow is a simple vertical scroll, with navigation providing smooth-scroll shortcuts. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: "Stats Section". Goal: Inform/Trust. Viz: Animated Counters. Interaction: Numbers count up on scroll. Justification: Creates a dynamic, engaging way to present key metrics. Method: Vanilla JS with IntersectionObserver.
+        - Report Info: "Community Testimonials". Goal: Trust. Viz: Rotating text cards. Interaction: Automatic rotation. Justification: Showcases social proof without requiring user action. Method: Vanilla JS with setInterval.
+        - Report Info: Need for practical, visual tools. Goal: Compare/Organize. Viz: Doughnut Chart. Interaction: Hover for tooltips. Justification: Demonstrates how the brand can visualize financial data (e.g., budget breakdown) for users, making complex info easy to grasp. Method: Chart.js.
+        - Report Info: General web elements. Goal: Inform/Engage. Viz: Styled HTML/CSS components (buttons, cards, banners). Interaction: Hover effects. Justification: Provides a tangible, interactive preview of the app's UI components. Method: Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #F8F8F8;
+            color: #333333;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #0A422D;
+        }
+        .bg-emerald-primary { background-color: #0A422D; }
+        .bg-gold-primary { background-color: #D4AF37; }
+        .text-gold-primary { color: #D4AF37; }
+        .text-emerald-primary { color: #0A422D; }
+        .border-gold-primary { border-color: #D4AF37; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+         @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-50">
+
+    <!-- Header -->
+    <header id="header" class="bg-emerald-primary sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white">SA Budget Queen</h1>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-white hover:text-gold-primary transition">Home</a>
+                <a href="#education" class="text-white hover:text-gold-primary transition">Royal Education</a>
+                <a href="#tools" class="text-white hover:text-gold-primary transition">Budget Tools</a>
+                <a href="#community" class="text-white hover:text-gold-primary transition">The Queen's Court</a>
+                <a href="#premium" class="text-white bg-gold-primary/20 border border-gold-primary rounded-full px-4 py-2 hover:bg-gold-primary hover:text-emerald-primary transition">The Royal Vault</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white text-2xl">
+                &#9776;
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-emerald-primary/95 absolute w-full">
+            <a href="#home" class="block text-center text-white py-2 hover:bg-gold-primary hover:text-emerald-primary transition">Home</a>
+            <a href="#education" class="block text-center text-white py-2 hover:bg-gold-primary hover:text-emerald-primary transition">Royal Education</a>
+            <a href="#tools" class="block text-center text-white py-2 hover:bg-gold-primary hover:text-emerald-primary transition">Budget Tools</a>
+            <a href="#community" class="block text-center text-white py-2 hover:bg-gold-primary hover:text-emerald-primary transition">The Queen's Court</a>
+            <a href="#premium" class="block text-center text-white py-2 hover:bg-gold-primary hover:text-emerald-primary transition">The Royal Vault</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="h-[80vh] min-h-[500px] bg-cover bg-center bg-no-repeat flex items-center" style="background-image: url('https://placehold.co/1800x900/0A422D/F8F8F8?text=Hands+Budgeting+in+SA+Context')">
+            <div class="bg-black/50 w-full h-full flex flex-col justify-center items-center text-center text-white p-6">
+                 <img src="https://storage.googleapis.com/gemini-prod/images/SABQ2025crown_HiRes_Gem.png" alt="Green Leaf Crown" class="w-24 h-24 md:w-32 md:h-32 mb-4 drop-shadow-lg">
+                <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-md">Live Like Royalty on Any Budget</h1>
+                <p class="mt-4 max-w-2xl text-lg md:text-xl text-stone-200">
+                    We bridge the gap between aspirational "Royalty" and pragmatic, resilient "Real-Life South African Budgeting." This is about accessible mastery, not unattainable luxury.
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#tools" class="bg-emerald-primary text-gold-primary px-8 py-3 rounded-full text-lg font-bold hover:bg-emerald-700 transition shadow-lg">Start Your Journey (Free)</a>
+                    <a href="#premium" class="bg-gold-primary text-emerald-primary px-8 py-3 rounded-full text-lg font-bold hover:bg-yellow-500 transition shadow-lg">Discover The Royal Vault</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust & Social Proof Section -->
+        <section id="community" class="py-16 md:py-24 bg-stone-100">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">Join a Kingdom of Savvy Spenders</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                    You're not alone. We're building a community dedicated to financial empowerment, resilience, and real-world success stories from across South Africa.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="text-5xl text-gold-primary font-bold" data-target="15000">0</div>
+                        <p class="mt-2 text-lg text-gray-700">Queens in our Court</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="text-5xl text-gold-primary font-bold" data-target="12">0</div>
+                        <p class="mt-2 text-lg text-gray-700">Free Budget Tools</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="text-5xl text-gold-primary font-bold">R<span data-target="2500000">0</span></div>
+                        <p class="mt-2 text-lg text-gray-700">Combined Monthly Savings</p>
+                    </div>
+                </div>
+
+                <div id="testimonial-section" class="mt-16 bg-emerald-primary text-white p-8 rounded-lg shadow-xl max-w-4xl mx-auto min-h-[200px] flex flex-col justify-center">
+                     <p id="testimonial-text" class="text-xl italic transition-opacity duration-500">"This app changed my life. I finally feel in control of my money."</p>
+                     <p id="testimonial-author" class="mt-4 font-bold text-gold-primary transition-opacity duration-500">- Thando, Gauteng</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Immediate Value Showcase -->
+        <section id="education" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center">Your Royal Education Awaits</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-center text-gray-600">
+                    Gain practical, actionable knowledge with our free resources. From downloadable templates to interactive tools, your journey to financial mastery starts here.
+                </p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
+                    <!-- Card 1: Education -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
+                         <div class="text-4xl text-emerald-primary mb-4 self-start">&#128218;</div>
+                        <h3 class="text-2xl font-bold">Queenly Quests</h3>
+                        <p class="mt-2 text-gray-600 flex-grow">Step-by-step guides on everything from paying off debt to investing for your future. Real advice for real South Africans.</p>
+                        <a href="#" class="mt-4 text-gold-primary font-bold hover:underline">Start Learning &rarr;</a>
+                    </div>
+                    <!-- Card 2: Budget Tools -->
+                    <div id="tools" class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
+                        <div class="text-4xl text-emerald-primary mb-4 self-start">&#128200;</div>
+                        <h3 class="text-2xl font-bold">Free Budget Tools</h3>
+                        <p class="mt-2 text-gray-600 flex-grow">Visualize your spending and see where your money goes. Our interactive tools make budgeting simple and even fun.</p>
+                        <div class="chart-container mt-4">
+                            <canvas id="budgetChart"></canvas>
+                        </div>
+                        <a href="#" class="mt-4 text-gold-primary font-bold hover:underline self-center">Access Tools &rarr;</a>
+                    </div>
+                    <!-- Card 3: Templates -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
+                        <div class="text-4xl text-emerald-primary mb-4 self-start">&#128196;</div>
+                        <h3 class="text-2xl font-bold">Downloadable Templates</h3>
+                        <p class="mt-2 text-gray-600 flex-grow">Get our popular monthly budget, debt snowball, and savings goal templates to use on your own terms.</p>
+                        <a href="#" class="mt-4 text-gold-primary font-bold hover:underline">Get Templates &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Content Highlight -->
+        <section id="premium" class="py-16 md:py-24 bg-stone-100">
+             <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <h4 class="text-lg font-bold text-gold-primary">THE ROYAL VAULT</h4>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-2">Unlock Your Full Potential</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        Go beyond the basics with The Royal Vault. Our premium app experience offers personalized coaching, advanced tracking tools, and access to an exclusive community of high-achieving Queens. It's time to build your empire.
+                    </p>
+                    <ul class="mt-6 space-y-2 text-gray-700">
+                        <li class="flex items-center"><span class="text-gold-primary mr-2">&#10004;</span> Personalized financial plans</li>
+                        <li class="flex items-center"><span class="text-gold-primary mr-2">&#10004;</span> Automatic expense tracking</li>
+                        <li class="flex items-center"><span class="text-gold-primary mr-2">&#10004;</span> Exclusive workshops & Q&As</li>
+                    </ul>
+                    <a href="#" class="bg-gold-primary text-emerald-primary px-8 py-3 mt-8 inline-block rounded-full text-lg font-bold hover:bg-yellow-500 transition shadow-lg">Join The Royal Vault</a>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="https://placehold.co/600x400/0A422D/F8F8F8?text=R5000+Family+Feast" alt="Featured Content: R5000 Family Feast" class="rounded-lg shadow-xl w-full">
+                    <div class="mt-4 bg-white p-4 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold">Featured: The R5000 Family Feast</h3>
+                        <p class="text-gray-600 mt-1">See how our community gets creative, feeding their families delicious, nutritious meals on a budget.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-emerald-primary text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white">SA Budget Queen</h3>
+                    <p class="mt-2 text-stone-300">Live Like Royalty on Any Budget.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg">Quick Links</h4>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="#home" class="text-stone-300 hover:text-gold-primary">Home</a></li>
+                        <li><a href="#education" class="text-stone-300 hover:text-gold-primary">Education</a></li>
+                        <li><a href="#tools" class="text-stone-300 hover:text-gold-primary">Tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg">Support</h4>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="#" class="text-stone-300 hover:text-gold-primary">Contact Us</a></li>
+                        <li><a href="#" class="text-stone-300 hover:text-gold-primary">Privacy Policy</a></li>
+                        <li><a href="#" class="text-stone-300 hover:text-gold-primary">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg">Follow Us</h4>
+                     <div class="flex space-x-4 mt-2">
+                        <a href="#" class="text-stone-300 hover:text-gold-primary text-2xl">F</a>
+                        <a href="#" class="text-stone-300 hover:text-gold-primary text-2xl">I</a>
+                        <a href="#" class="text-stone-300 hover:text-gold-primary text-2xl">X</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gold-primary/20 text-center text-stone-400">
+                &copy; 2025 SA Budget Queen. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileMenu.addEventListener('click', (e) => {
+                if(e.target.tagName === 'A'){
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            // Animated Counters
+            const counters = document.querySelectorAll('[data-target]');
+            const speed = 200;
+
+            const animateCounter = (counter) => {
+                const target = +counter.dataset.target;
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(() => animateCounter(counter), 1);
+                } else {
+                    counter.innerText = target.toLocaleString('en-ZA');
+                }
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+
+            // Testimonial Carousel
+            const testimonials = [
+                { text: "This app changed my life. I finally feel in control of my money.", author: "- Thando, Gauteng" },
+                { text: "The R5000 Family Feast challenge was so much fun and saved us a fortune!", author: "- Buhle, Western Cape" },
+                { text: "I never thought I could pay off my debt. The tools and community support made it possible.", author: "- Fatima, KZN" }
+            ];
+            let currentTestimonial = 0;
+            const testimonialText = document.getElementById('testimonial-text');
+            const testimonialAuthor = document.getElementById('testimonial-author');
+
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                
+                testimonialText.style.opacity = 0;
+                testimonialAuthor.style.opacity = 0;
+
+                setTimeout(() => {
+                    testimonialText.innerText = testimonials[currentTestimonial].text;
+                    testimonialAuthor.innerText = testimonials[currentTestimonial].author;
+                    testimonialText.style.opacity = 1;
+                    testimonialAuthor.style.opacity = 1;
+                }, 500);
+
+            }, 5000);
+
+            // Chart.js Budget Chart
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Groceries', 'Transport', 'Housing', 'Savings', 'Debt', 'Other'],
+                    datasets: [{
+                        label: 'Sample Budget Breakdown',
+                        data: [30, 15, 25, 10, 15, 5],
+                        backgroundColor: [
+                            '#0A422D', // Emerald Green
+                            '#4CAF50', // Vibrant Leaf Green
+                            '#85A299', // Lighter Green
+                            '#D4AF37', // Gold
+                            '#A52A2A', // Maroon
+                            '#898989'  // Grey
+                        ],
+                        borderColor: '#F8F8F8',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#333333',
+                                font: {
+                                    family: "'Lato', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

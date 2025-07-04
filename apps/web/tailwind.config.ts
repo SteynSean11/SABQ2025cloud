@@ -16,6 +16,7 @@ const config: Config = {
         "brand-accent-red": "#9B111E",
         "brand-accent-pink": "#E91E63",
         "brand-accent-green": "#4CAF50",
+        "cream-100": "#F8F7F4",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

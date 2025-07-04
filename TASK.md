@@ -2,7 +2,7 @@
 
 ## Development Task Management & Roadmap
 
-**Last Updated**: 2025-06-27
+**Last Updated**: 2025-07-03
 **Current Sprint**: Sprint 1: Minimum Viable Deployment
 **Next Review**: 2025-07-05
 
@@ -18,18 +18,21 @@
       - [x] Apply basic branding: use primary brand colors and include the logo.
 
 - [x] **Task 2: Containerization** (Priority: High)
-      - [x] Create a multi-stage Dockerfile to build and serve the static assets.
+      - [x] Create a multi-stage Dockerfile to build and serve the static assets.                                                                                                                                                                           
       - [x] Test the Docker container build and run it locally.
+      - [x] **Update (2025-07-03):** Corrected Dockerfile to work with monorepo structure.
 
 - [x] **Task 3: CI/CD Pipeline Setup** (Priority: High)
       - [x] Configure Google Cloud Build to connect to the source repository.
       - [x] Create a `cloudbuild.yaml` to define build, push, and deploy steps.
       - [x] Run a manual build to test the pipeline.
+      - [x] **Update (2025-07-03):** Fixed build failures by creating the Artifact Registry repository and granting necessary IAM permissions to the Cloud Build service account.
 
 - [x] **Task 4: Google Cloud Run Deployment** (Priority: High)
       - [x] Create a new service in Google Cloud Run.
       - [x] Configure the service for public access.
       - [x] Manually deploy the first container image to verify the service.
+      - [x] **Update (2025-07-03):** Deployment is now automated via the Cloud Build pipeline.
 
 - [x] **Task 5: Connect Custom Domain** (Priority: High)
       - [x] Map the custom domain to the Cloud Run service.
@@ -103,10 +106,10 @@ Focus: Solidify the project's foundation by implementing our contextual sandbox,
 
 **Focus**: Establish the backend infrastructure using Express.js and Prisma, and develop the initial API endpoints required for user management.
 
-- [ ] **Task 18: Initialize Express.js Backend** (Priority: High)
-      - [ ] Set up a new Express.js application in the `apps/api` directory.
-      - [ ] Configure TypeScript, ESLint, and Prettier for the backend.
-      - [ ] Create a basic server structure with middleware for logging, CORS, and error handling.
+- [x] **Task 18: Initialize Express.js Backend** (Priority: High)
+      - [x] Set up a new Express.js application in the `apps/api` directory.
+      - [x] Configured TypeScript, ESLint, and Prettier for the backend.
+      - [x] Created a basic server structure with middleware for logging, CORS, and error handling.
 - [ ] **Task 19: Set Up PostgreSQL & Prisma** (Priority: High)
       - [ ] Create a new PostgreSQL database on a local or cloud instance.
       - [ ] Initialize Prisma in the `apps/api` directory and connect it to the database.

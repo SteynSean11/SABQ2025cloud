@@ -33,7 +33,7 @@ Users are described as having mixed technical proficiency, so the app must be in
 
 ### System Type
 
-The system is envisioned as a Progressive Web Application (PWA) with offline capabilities. It will feature a microservices backend architecture and a mobile-first responsive design. The application should be cloud-hosted, with a preference for South African data centers to ensure low latency and compliance. It uses a pnpm monorepo structure to manage frontend and backend codebases within a single repository while keeping them decoupled.
+The system is envisioned as a Progressive Web Application (PWA) with offline capabilities. It will feature a microservices backend architecture and a mobile-first responsive design. The application is cloud-hosted on Google Cloud, with a preference for South African data centers to ensure low latency and compliance. It uses a pnpm monorepo structure to manage frontend and backend codebases within a single repository while keeping them decoupled.
 
 ### High-Level Components
 
@@ -95,18 +95,18 @@ The system is envisioned as a Progressive Web Application (PWA) with offline cap
 
 ### Infrastructure & DevOps
 
-• Cloud Provider: Google Cloud (with preference for the Johannesburg africa-south1 region for low latency and POPIA compliance). AWS/Azure are also considered.
+• Cloud Provider: Google Cloud (with preference for the Johannesburg africa-south1 region for low latency and POPIA compliance).
 • Containerization: Docker + Docker Compose (for development), with Docker containers for deployment.
-• Deployment Target: Google Cloud Run for serverless services. Kubernetes for more complex orchestration if needed.
-• CI/CD: GitHub Actions (preferred) or Azure DevOps. Google Cloud Build is also mentioned for Cloud Run deployments.
-• Monitoring & Logging: Google Cloud's Operations Suite (Cloud Monitoring, Cloud Logging), DataDog, New Relic, or Prometheus/Grafana.
+• Deployment Target: Google Cloud Run for serverless services.
+• CI/CD: Google Cloud Build with GitHub Actions for triggers.
+• Monitoring & Logging: Google Cloud's Operations Suite (Cloud Monitoring, Cloud Logging).
 • Error Tracking: Sentry.
-• Load Balancer: Google Cloud Load Balancing, AWS ALB, or Azure Load Balancer for traffic distribution and automatic scaling.
+• Load Balancer: Google Cloud Load Balancing.
 
 ### Development Tools
 
-• Package Manager: pnpm (preferred) or npm.
-• Version Control: Git, hosted on GitHub or GitLab.
+• Package Manager: pnpm.
+• Version Control: Git, hosted on GitHub.
 • Code Quality: ESLint + Prettier for configuration enforcement.
 • Type Checking: TypeScript strict mode.
 • Git Hooks: Husky + lint-staged.
@@ -428,3 +428,86 @@ Risk Mitigation
 • Compliance: Regular legal and compliance reviews.
 • Performance: Regular performance testing and optimization.
 • Security: Ongoing security audits and penetration testing.
+
+## Backend & Authentication Implementation Plan
+
+### Summary
+This plan outlines the technical steps required to build the backend infrastructure and implement a secure user authentication system. The goal is to complete the foundational tasks from Sprint 4 (Backend Foundation) and Sprint 5 (User Authentication) as defined in `TASK.md`. This involves setting up the database with Prisma, creating user-related API endpoints, and securing them with a JWT-based authentication strategy using Passport.js.
+
+### Prerequisites & Dependencies
+- [x] A provisioned PostgreSQL database instance.
+- [x] Node.js v20+ and pnpm installed.
+- [x] Docker and Docker Compose for local environment setup.
+- [x] Completed setup of the Express.js application in `apps/api`.
+- [ ] Required backend dependencies to be installed: `prisma`, `@prisma/client`, `zod`, `passport`, `passport-jwt`, `bcrypt`, `jsonwebtoken`.
+- [ ] Required development dependencies: `@types/passport`, `@types/passport-jwt`, `@types/bcrypt`, `@types/jsonwebtoken`, `vitest`, `supertest`.
+
+### Implementation Steps
+
+#### Sprint 4: Backend Foundation & API Implementation
+- [ ] **Task 19: Set Up PostgreSQL & Prisma**
+    - [ ] Initialize Prisma within the `apps/api` directory (`pnpm --filter api prisma init`).
+    - [ ] Configure the `DATABASE_URL` in the `.env` file to connect to the PostgreSQL instance.
+    - [ ] Define the `User` model in the `schema.prisma` file, including fields for `id`, `email`, `password`, `name`, `createdAt`, and `updatedAt`.
+    - [ ] Run the initial database migration to create the `User` table (`pnpm --filter api prisma migrate dev --name "init-user-model"`).
+    - [ ] Generate the Prisma Client (`pnpm --filter api prisma generate`).
+
+- [ ] **Task 20: Implement User API Endpoints**
+    - [ ] Create the directory structure for services and controllers (`apps/api/src/services`, `apps/api/src/controllers`).
+    - [ ] Create `apps/api/src/services/user.service.ts` to encapsulate Prisma database logic for user operations (create, find by email).
+    - [ ] Create `apps/api/src/controllers/user.controller.ts` to handle request/response logic.
+    - [ ] Implement Zod schema for registration input validation in a shared validation package.
+    - [ ] Create the `POST /api/users/register` endpoint, ensuring it hashes the user's password with `bcrypt` before saving.
+    - [ ] Create the `POST /api/users/login` endpoint (initial version, to be updated in Sprint 5).
+    - [ ] Create a new router file for user routes and mount it in `apps/api/src/index.ts`.
+
+#### Sprint 5: User Authentication with Passport.js
+- [ ] **Task 21: Implement JWT Authentication with Passport.js**
+    - [ ] Install `passport`, `passport-jwt`, `bcrypt`, `jsonwebtoken` and their corresponding `@types` packages in `apps/api`.
+    - [ ] Create a configuration file for Passport (`apps/api/src/config/passport.ts`).
+    - [ ] Implement the Passport JWT strategy to extract the user ID from the token payload and verify the user exists.
+    - [ ] Integrate Passport middleware into the main Express application file (`apps/api/src/index.ts`).
+    - [ ] Update the `POST /api/users/login` endpoint to compare the hashed password and, on success, generate and return a JWT.
+    - [ ] Create a protected test endpoint (e.g., `GET /api/users/profile`) that requires a valid JWT to access.
+
+- [ ] **Task 22: Frontend Authentication Integration**
+    - [ ] Create a `useAuth` hook and an `AuthContext` in the `apps/web` project, using the existing Zustand store to manage user state and tokens.
+    - [ ] Develop a login page/component with a form that calls the `POST /api/users/login` endpoint.
+    - [ ] Upon successful login, store the JWT securely in the client (e.g., httpOnly cookie or local storage).
+    - [ ] Implement a secure logout function that removes the token from the client and clears the auth state.
+    - [ ] Create an API client utility (e.g., using `axios`) that automatically attaches the JWT to the headers of outgoing requests.
+
+- [ ] **Task 23: Implement Token Refresh Strategy**
+    - [ ] Add a `refreshToken` field to the `User` model in `schema.prisma` and run a migration.
+    - [ ] Upon login, generate both an access token (short-lived) and a refresh token (long-lived) and store the hashed refresh token in the database.
+    - [ ] Create a new endpoint `POST /api/auth/refresh-token` that accepts a refresh token, validates it against the database, and issues a new access token.
+    - [ ] Implement logic in the frontend API client to intercept 401 Unauthorized responses, call the refresh token endpoint, and retry the original request with the new token.
+
+- [ ] **Task 24: Secure Sensitive Data**
+    - [ ] Add `JWT_SECRET`, `JWT_REFRESH_SECRET`, and `JWT_EXPIRES_IN` to the `.env.example` file.
+    - [ ] Verify that all secrets are loaded from environment variables and are not hardcoded anywhere in the codebase.
+
+### Documentation Updates
+- [ ] **README.md**: Update the backend setup section with instructions for installing new dependencies and running Prisma migrations.
+- [ ] **README.md**: Add a section explaining the new environment variables required for authentication (`JWT_SECRET`, etc.).
+- [ ] **API Documentation**: Create initial API documentation (e.g., using Postman or a Markdown file) for the new `/register`, `/login`, and `/refresh-token` endpoints.
+
+### Testing Plan
+- [ ] **Unit Tests (Vitest)**:
+    - [ ] Write unit tests for utility functions, such as token generation and password hashing.
+    - [ ] Test the Passport.js strategy configuration in isolation.
+- [ ] **Integration Tests (Vitest + Supertest)**:
+    - [ ] Write integration tests for the `POST /api/users/register` endpoint, covering success, validation errors, and duplicate email cases.
+    - [ ] Write integration tests for the `POST /api/users/login` endpoint, covering success, invalid credentials, and non-existent user cases.
+    - [ ] Write integration tests for protected endpoints to ensure they correctly reject unauthorized requests and allow authorized ones.
+    - [ ] Write integration tests for the `POST /api/auth/refresh-token` endpoint.
+- [ ] **Manual Verification**:
+    - [ ] Manually test the full registration and login flow from the frontend.
+    - [ ] Verify that protected frontend routes redirect unauthenticated users.
+    - [ ] Confirm that the token refresh mechanism works as expected when an access token expires.
+
+### Open Questions & Potential Risks
+- **Risk**: The complexity of the token refresh logic on the frontend could introduce bugs. **Mitigation**: Develop the API client interceptor carefully with extensive testing.
+- **Question**: What are the exact expiration times for the access and refresh tokens? **Decision**: Propose standard times (e.g., access: 15 mins, refresh: 7 days) and confirm.
+- **Risk**: Incorrectly configured CORS could block frontend requests. **Mitigation**: Ensure the backend CORS policy explicitly allows the frontend's origin URL.
+- **Question**: Should we implement role-based access control (RBAC) from the start? **Decision**: Defer RBAC until user roles (e.g., 'admin', 'premium-user') are formally required by a feature.
