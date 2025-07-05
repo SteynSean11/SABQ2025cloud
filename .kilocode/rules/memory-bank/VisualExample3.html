@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Budget Queen - Storybook Asset Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; background-color: #F8F8F8; color: #333333; }
+        h1, h2, h3, h4, h5, h6, .font-serif { font-family: 'Playfair Display', serif; }
+        .bg-primary-teal { background-color: #24CEF3; }
+        .text-primary-teal { color: #24CEF3; }
+        .bg-primary-purple { background-color: #BE3BVC; }
+        .text-primary-purple { color: #BE3BVC; }
+        .bg-dark-teal { background-color: #095540; }
+        .text-dark-teal { color: #095540; }
+        .bg-sabq-emerald { background-color: #0A422D; }
+        .text-sabq-emerald { color: #0A422D; }
+        .bg-sabq-gold { background-color: #D4AF37; }
+        .text-sabq-gold { color: #D4AF37; }
+        .border-sabq-gold { border-color: #D4AF37; }
+        .chart-container { position: relative; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-64 bg-dark-teal text-white p-6 md:sticky top-0 h-auto md:h-screen overflow-y-auto shadow-lg z-10">
+        <h2 class="text-3xl font-bold font-serif mb-8 text-center md:text-left">SA BQ Assets</h2>
+        <nav>
+            <ul class="space-y-4">
+                <li><a href="#colors" class="block py-2 px-4 rounded-lg hover:bg-primary-teal transition duration-200">Colors</a></li>
+                <li><a href="#typography" class="block py-2 px-4 rounded-lg hover:bg-primary-teal transition duration-200">Typography</a></li>
+                <li><a href="#logos-icons" class="block py-2 px-4 rounded-lg hover:bg-primary-teal transition duration-200">Logos & Icons</a></li>
+                <li><a href="#buttons" class="block py-2 px-4 rounded-lg hover:bg-primary-teal transition duration-200">Buttons</a></li>
+                <li><a href="#cards" class="block py-2 px-4 rounded-lg hover:bg-primary-teal transition duration-200">Cards & Sections</a></li>
+                <li><a href="#navigation" class="block py-2 px-4 rounded-lg hover:bg-primary-teal transition duration-200">Navigation Mockups</a></li>
+                <li><a href="#charts" class="block py-2 px-4 rounded-lg hover:bg-primary-teal transition duration-200">Sample Charts</a></li>
+                <li><a href="#ai-assistant" class="block py-2 px-4 rounded-lg hover:bg-primary-teal transition duration-200">Royal AI Assistant ✨</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-6 md:p-10 bg-gray-50">
+        <h1 class="text-4xl md:text-5xl font-black font-serif text-sabq-emerald mb-8">SA Budget Queen - Asset Library</h1>
+        <p class="text-lg text-gray-600 mb-12 max-w-3xl">
+            This interactive library showcases the core visual elements and components for the SA Budget Queen web application. Explore the brand's colors, typography, UI elements, and sample visualizations designed to empower and engage users.
+        </p>
+
+        <!-- Colors Section -->
+        <section id="colors" class="mb-16 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-sabq-emerald mb-6 border-b-2 border-primary-teal pb-2">1. Color Palette</h2>
+            <p class="mb-6 text-gray-700">The SA Budget Queen brand uses a palette that conveys trust, growth, and a touch of grounded luxury. Interact with the swatches below to see how they apply to text.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-4 rounded-lg shadow-inner bg-sabq-emerald text-white">
+                    <div class="w-16 h-16 rounded-full border-2 border-white mb-2 cursor-pointer" data-color="#0A422D"></div>
+                    <p class="font-bold">Primary Emerald Green</p>
+                    <p class="text-sm">#0A422D</p>
+                </div>
+                <div class="p-4 rounded-lg shadow-inner bg-sabq-gold text-sabq-emerald">
+                    <div class="w-16 h-16 rounded-full border-2 border-white mb-2 cursor-pointer" data-color="#D4AF37"></div>
+                    <p class="font-bold">Primary Gold</p>
+                    <p class="text-sm">#D4AF37</p>
+                </div>
+                <div class="p-4 rounded-lg shadow-inner bg-primary-purple text-white">
+                    <div class="w-16 h-16 rounded-full border-2 border-white mb-2 cursor-pointer" data-color="#4B0082"></div>
+                    <p class="font-bold">Secondary Deep Aubergine</p>
+                    <p class="text-sm">#4B0082</p>
+                </div>
+                <div class="p-4 rounded-lg shadow-inner bg-gray-100 text-gray-800">
+                    <div class="w-16 h-16 rounded-full border-2 border-gray-300 mb-2 cursor-pointer" data-color="#F8F8F8"></div>
+                    <p class="font-bold">Warm Off-White</p>
+                    <p class="text-sm">#F8F8F8</p>
+                </div>
+                <div class="p-4 rounded-lg shadow-inner bg-accent-maroon text-white">
+                    <div class="w-16 h-16 rounded-full border-2 border-white mb-2 cursor-pointer" data-color="#A52A2A"></div>
+                    <p class="font-bold">Accent Subtle Red/Maroon</p>
+                    <p class="text-sm">#A52A2A</p>
+                </div>
+                <div class="p-4 rounded-lg shadow-inner bg-accent-leaf text-white">
+                    <div class="w-16 h-16 rounded-full border-2 border-white mb-2 cursor-pointer" data-color="#4CAF50"></div>
+                    <p class="font-bold">Accent Vibrant Leaf Green</p>
+                    <p class="text-sm">#4CAF50</p>
+                </div>
+            </div>
+            <div id="color-demo-text" class="mt-8 p-6 rounded-lg border-2 border-primary-teal bg-gray-50 text-gray-800 transition-colors duration-300">
+                <h3 class="text-2xl font-serif mb-2">Sample Text with Selected Color</h3>
+                <p>This paragraph demonstrates how the chosen color might look when applied to text elements. The SA Budget Queen brand emphasizes clarity and readability.</p>
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section id="typography" class="mb-16 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-sabq-emerald mb-6 border-b-2 border-primary-teal pb-2">2. Typography</h2>
+            <p class="mb-6 text-gray-700">Our typography combines timeless elegance for headings with modern readability for body text, ensuring a clear and authoritative voice.</p>
+            <div class="mb-8">
+                <h3 class="text-3xl font-serif text-sabq-emerald">Playfair Display (Headings)</h3>
+                <p class="text-gray-600 mt-2">Used for all main headings, titles, and branding text. Conveys authority and timelessness.</p>
+                <h1 class="text-5xl font-black text-sabq-emerald mt-4">Heading 1 Example</h1>
+                <h2 class="text-4xl font-bold text-sabq-emerald mt-2">Heading 2 Example</h2>
+                <h3 class="text-3xl font-bold text-sabq-emerald mt-2">Heading 3 Example</h3>
+            </div>
+            <div>
+                <h3 class="text-3xl font-sans text-sabq-emerald">Lato (Body Text & Action Elements)</h3>
+                <p class="text-gray-600 mt-2">A clean, modern, and highly readable sans-serif font for all body copy, descriptions, and smaller text. Ensures clarity and accessibility.</p>
+                <p class="text-lg mt-4">This is an example of body text. It is designed to be clear and easy to read on all devices, providing a practical and actionable feel to our content.</p>
+                <p class="text-base mt-2">Smaller text for descriptions or footnotes. Clarity is key, even at smaller sizes.</p>
+            </div>
+        </section>
+
+        <!-- Logos & Icons Section -->
+        <section id="logos-icons" class="mb-16 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-sabq-emerald mb-6 border-b-2 border-primary-teal pb-2">3. Logos & Iconography</h2>
+            <p class="mb-6 text-gray-700">Our crown motifs are central to our brand, representing growth and achievement. Icons are simple and modern, integrating our core colors.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Primary Logo -->
+                <div class="p-4 rounded-lg bg-gray-50 text-center shadow-inner">
+                    <h3 class="text-xl font-bold text-sabq-emerald mb-4">Primary Logo (Money Bag)</h3>
+                    <div class="bg-sabq-emerald p-6 rounded-lg">
+                        <h4 class="text-3xl font-bold text-white font-serif">SA Budget Queen</h4>
+                        <img src="https://placehold.co/128x128/0A422D/F8F8F8?text=Money+Bag" alt="SA Budget Queen Primary Logo" class="w-32 h-32 mx-auto mt-4 drop-shadow-lg">
+                    </div>
+                    <p class="mt-4 text-gray-600">The definitive primary logo for headers and branding.</p>
+                </div>
+                <!-- Leaf Crown -->
+                <div class="p-4 rounded-lg bg-gray-50 text-center shadow-inner">
+                    <h3 class="text-xl font-bold text-sabq-emerald mb-4">Green Leaf Crown</h3>
+                    <img src="https://placehold.co/96x96/0A422D/F8F8F8?text=Leaf+Crown" alt="Green Leaf Crown" class="w-24 h-24 mx-auto drop-shadow-lg">
+                    <p class="mt-4 text-gray-600">Represents growth, organic budgeting, and a unique regal touch.</p>
+                </div>
+                <!-- Gold Crown -->
+                <div class="p-4 rounded-lg bg-gray-50 text-center shadow-inner">
+                    <h3 class="text-xl font-bold text-sabq-emerald mb-4">Gold Crown</h3>
+                    <div class="text-sabq-gold text-6xl mb-2">&#9813;</div>
+                    <p class="mt-4 text-gray-600">Symbolizes aspiration and achievement, used for premium features.</p>
+                </div>
+                <!-- Sample Icons -->
+                <div class="p-4 rounded-lg bg-gray-50 text-center shadow-inner">
+                    <h3 class="text-xl font-bold text-sabq-emerald mb-4">Sample Icons (Unicode)</h3>
+                    <div class="flex justify-around items-center text-4xl text-sabq-emerald">
+                        <span>&#128218;</span>
+                        <span>&#128200;</span>
+                        <span>&#128196;</span>
+                        <span class="text-sabq-gold">&#128176;</span>
+                    </div>
+                    <p class="mt-4 text-gray-600">Simple, clean line icons for navigation and features.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons Section -->
+        <section id="buttons" class="mb-16 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-sabq-emerald mb-6 border-b-2 border-primary-teal pb-2">4. Buttons</h2>
+            <p class="mb-6 text-gray-700">Our call-to-action buttons are clear, prominent, and designed to encourage user interaction with a royal touch.</p>
+            <div class="flex flex-wrap gap-6 items-center justify-center">
+                <button class="bg-sabq-emerald text-sabq-gold px-8 py-3 rounded-full text-lg font-bold hover:bg-dark-teal transition shadow-lg">
+                    Primary Button
+                </button>
+                <button class="bg-sabq-gold text-sabq-emerald px-8 py-3 rounded-full text-lg font-bold hover:bg-yellow-500 transition shadow-lg">
+                    Secondary Button
+                </button>
+                <button class="bg-transparent border-2 border-sabq-emerald text-sabq-emerald px-8 py-3 rounded-full text-lg font-bold hover:bg-sabq-emerald hover:text-white transition shadow-md">
+                    Outline Button
+                </button>
+                <button class="bg-accent-maroon text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-red-700 transition shadow-lg">
+                    Alert Button
+                </button>
+            </div>
+        </section>
+
+        <!-- Cards & Sections Section -->
+        <section id="cards" class="mb-16 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-sabq-emerald mb-6 border-b-2 border-primary-teal pb-2">5. Cards & Section Layouts</h2>
+            <p class="mb-6 text-gray-700">Content is presented in clean, digestible cards and well-structured sections, ensuring readability and visual appeal.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Value Showcase Card -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col">
+                    <div class="text-4xl text-primary-teal mb-4 self-start">&#128172;</div>
+                    <h3 class="text-2xl font-bold text-sabq-emerald">Immediate Value Snippet</h3>
+                    <p class="mt-2 text-gray-600 flex-grow">Compelling snippets from "Royal Education" and "Budget Tools" entice users to explore deeper.</p>
+                    <a href="#" class="mt-4 text-primary-purple font-bold hover:underline">Learn More &rarr;</a>
+                </div>
+                <!-- Trust Section Card (Stat) -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-xl text-sabq-emerald font-bold">Empowered Members</h3>
+                    <div class="text-6xl text-sabq-gold font-bold mt-2">15,000+</div>
+                    <p class="text-gray-600 mt-2">Queens in our Court, growing daily.</p>
+                </div>
+                <!-- Featured Content Card -->
+                <div class="md:col-span-2 bg-gray-50 p-6 rounded-lg shadow-md flex flex-col md:flex-row items-center gap-6">
+                    <img src="https://placehold.co/300x200/0A422D/F8F8F8?text=R5000+Feast" alt="Featured Content" class="rounded-lg shadow-sm w-full md:w-1/3">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-sabq-emerald">Featured: The R5000 Family Feast</h3>
+                        <p class="mt-2 text-gray-600">Discover how our community creates delicious, nutritious meals on a budget, showcasing real South African resourcefulness.</p>
+                        <a href="#" class="mt-4 text-primary-purple font-bold hover:underline">Read the Story &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Mockups Section -->
+        <section id="navigation" class="mb-16 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-sabq-emerald mb-6 border-b-2 border-primary-teal pb-2">6. Navigation Mockups</h2>
+            <p class="mb-6 text-gray-700">Clean and intuitive navigation is key to guiding users through their financial journey.</p>
+            
+            <div class="mb-8">
+                <h3 class="text-xl font-bold text-sabq-emerald mb-4">Header Navigation</h3>
+                <nav class="bg-sabq-emerald p-4 rounded-lg flex justify-between items-center shadow-md">
+                    <h4 class="text-2xl font-bold font-serif text-white">SA Budget Queen</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-sabq-gold transition">Home</a>
+                        <a href="#" class="text-white hover:text-sabq-gold transition">Education</a>
+                        <a href="#" class="text-white bg-sabq-gold/20 border border-sabq-gold rounded-full px-3 py-1 hover:bg-sabq-gold hover:text-sabq-emerald transition">Vault</a>
+                    </div>
+                </nav>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-bold text-sabq-emerald mb-4">Footer Navigation</h3>
+                <footer class="bg-sabq-emerald text-white p-6 rounded-lg shadow-md">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <h4 class="font-bold text-lg">SA Budget Queen</h4>
+                            <p class="text-sm text-stone-300">Live Like Royalty</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Links</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li><a href="#" class="text-stone-300 hover:text-sabq-gold">Contact</a></li>
+                                <li><a href="#" class="text-stone-300 hover:text-sabq-gold">Privacy</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Follow Us</h4>
+                            <div class="flex space-x-3 text-xl mt-1">
+                                <a href="#" class="text-stone-300 hover:text-sabq-gold">F</a>
+                                <a href="#" class="text-stone-300 hover:text-sabq-gold">I</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </section>
+
+        <!-- Sample Charts Section -->
+        <section id="charts" class="mb-16 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-sabq-emerald mb-6 border-b-2 border-primary-teal pb-2">7. Sample Charts</h2>
+            <p class="mb-6 text-gray-700">Data visualization is key to making budgeting clear and actionable. Here's how we present financial insights.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Donut Chart -->
+                <div class="p-4 rounded-lg bg-gray-50 shadow-inner">
+                    <h3 class="text-xl font-bold text-sabq-emerald text-center mb-4">Monthly Expense Breakdown</h3>
+                    <p class="text-center text-gray-600 text-sm mb-4">A typical monthly budget distribution, showing where money goes.</p>
+                    <div class="chart-container">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                </div>
+                <!-- Bar Chart -->
+                <div class="p-4 rounded-lg bg-gray-50 shadow-inner">
+                    <h3 class="text-xl font-bold text-sabq-emerald text-center mb-4">Savings Goal Progress</h3>
+                    <p class="text-center text-gray-600 text-sm mb-4">Visualizing progress towards different financial goals over time.</p>
+                    <div class="chart-container">
+                        <canvas id="savingsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Royal AI Assistant Section -->
+        <section id="ai-assistant" class="mb-16 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-sabq-emerald mb-6 border-b-2 border-primary-teal pb-2">8. Royal AI Assistant ✨</h2>
+            <p class="mb-6 text-gray-700">Leverage the power of AI to get personalized budgeting advice and creative recipe ideas, tailored to your needs. Our Royal AI Assistant is here to empower your financial journey.</p>
+
+            <!-- Royal Budgeting Advisor -->
+            <div class="mb-10 p-6 bg-gray-50 rounded-lg shadow-inner">
+                <h3 class="text-2xl font-bold text-sabq-emerald mb-4">Royal Budgeting Advisor ✨</h3>
+                <p class="mb-4 text-gray-600">Ask any question about budgeting, saving, or managing finances in a South African context.</p>
+                <textarea id="budgeting-question" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-teal" rows="4" placeholder="e.g., How can I save money on groceries in South Africa?"></textarea>
+                <button id="get-advice-btn" class="mt-4 bg-sabq-emerald text-sabq-gold px-6 py-2 rounded-full font-bold hover:bg-dark-teal transition shadow-lg">
+                    Get Royal Advice ✨
+                </button>
+                <div id="advice-loading" class="mt-4 text-gray-500 hidden">Generating advice...</div>
+                <div id="advice-output" class="mt-4 p-4 bg-white rounded-lg border border-gray-200 text-gray-700 min-h-[80px] overflow-auto"></div>
+            </div>
+
+            <!-- Budget-Friendly Recipe Idea -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow-inner">
+                <h3 class="text-2xl font-bold text-sabq-emerald mb-4">Budget-Friendly Recipe Idea ✨</h3>
+                <p class="mb-4 text-gray-600">Tell me what ingredients you have, or your budget, and I'll suggest a recipe idea.</p>
+                <textarea id="recipe-input" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-teal" rows="4" placeholder="e.g., Chicken, rice, R50 budget"></textarea>
+                <button id="generate-recipe-btn" class="mt-4 bg-sabq-emerald text-sabq-gold px-6 py-2 rounded-full font-bold hover:bg-dark-teal transition shadow-lg">
+                    Generate Recipe Idea ✨
+                </button>
+                <div id="recipe-loading" class="mt-4 text-gray-500 hidden">Generating recipe...</div>
+                <div id="recipe-output" class="mt-4 p-4 bg-white rounded-lg border border-gray-200 text-gray-700 min-h-[80px] overflow-auto"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapLabel = (label) => {
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) lines.push(currentLine);
+                return lines;
+            };
+
+            // Color Palette Interaction
+            const colorSwatches = document.querySelectorAll('#colors [data-color]');
+            const colorDemoText = document.getElementById('color-demo-text');
+            colorSwatches.forEach(swatch => {
+                swatch.addEventListener('click', () => {
+                    const color = swatch.dataset.color;
+                    colorDemoText.style.borderColor = color;
+                    colorDemoText.querySelector('h3').style.color = color;
+                    colorDemoText.querySelector('p').style.color = color;
+                });
+            });
+
+            // Smooth Scrolling for Sidebar Nav
+            document.querySelectorAll('aside a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Expense Chart (Donut)
+            const expenseCtx = document.getElementById('expenseChart').getContext('2d');
+            new Chart(expenseCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Groceries', 'Transport', 'Housing', 'Savings', 'Debt', 'Utilities'].map(wrapLabel),
+                    datasets: [{
+                        data: [30, 15, 20, 10, 15, 10],
+                        backgroundColor: ['#0A422D', '#D4AF37', '#4B0082', '#A52A2A', '#4CAF50', '#898989'],
+                        borderColor: '#F8F8F8',
+                        borderWidth: 4,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#333333', font: { family: "'Lato', sans-serif" } } },
+                        tooltip: {
+                            backgroundColor: '#FFFFFF', titleColor: '#0A422D', bodyColor: '#333333',
+                            borderColor: '#D4AF37', borderWidth: 1, padding: 10,
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    return Array.isArray(label) ? label.join(' ') : label;
+                                },
+                                label: function(context) { return ` ${context.parsed}%`; }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Savings Chart (Bar)
+            const savingsCtx = document.getElementById('savingsChart').getContext('2d');
+            new Chart(savingsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Emergency Fund', 'Holiday', 'Education', 'New Car'].map(wrapLabel),
+                    datasets: [{
+                        label: 'Progress (%)',
+                        data: [75, 40, 20, 60],
+                        backgroundColor: ['#0A422D', '#D4AF37', '#4CAF50', '#4B0082'],
+                        borderColor: '#F8F8F8',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; }, color: '#333333' } },
+                        x: { ticks: { color: '#333333' } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#FFFFFF', titleColor: '#0A422D', bodyColor: '#333333',
+                            borderColor: '#D4AF37', borderWidth: 1, padding: 10,
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    return Array.isArray(label) ? label.join(' ') : label;
+                                },
+                                label: function(context) { return ` ${context.parsed.y}%`; }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gemini API Integration
+            const getAdviceBtn = document.getElementById('get-advice-btn');
+            const budgetingQuestionInput = document.getElementById('budgeting-question');
+            const adviceLoading = document.getElementById('advice-loading');
+            const adviceOutput = document.getElementById('advice-output');
+
+            const generateRecipeBtn = document.getElementById('generate-recipe-btn');
+            const recipeInput = document.getElementById('recipe-input');
+            const recipeLoading = document.getElementById('recipe-loading');
+            const recipeOutput = document.getElementById('recipe-output');
+
+            const callGeminiAPI = async (prompt, outputElement, loadingElement) => {
+                outputElement.innerHTML = '';
+                loadingElement.classList.remove('hidden');
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Leave as-is for Canvas to provide
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        outputElement.innerHTML = text;
+                    } else {
+                        outputElement.innerHTML = 'Sorry, I could not generate a response. Please try again.';
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    outputElement.innerHTML = 'An error occurred. Please try again later.';
+                } finally {
+                    loadingElement.classList.add('hidden');
+                }
+            };
+
+            getAdviceBtn.addEventListener('click', () => {
+                const question = budgetingQuestionInput.value.trim();
+                if (question) {
+                    const prompt = `Provide practical budgeting advice for a South African context based on this question: "${question}"`;
+                    callGeminiAPI(prompt, adviceOutput, adviceLoading);
+                } else {
+                    adviceOutput.innerHTML = 'Please enter a question.';
+                }
+            });
+
+            generateRecipeBtn.addEventListener('click', () => {
+                const recipePrompt = recipeInput.value.trim();
+                if (recipePrompt) {
+                    const prompt = `Suggest a budget-friendly recipe idea for a South African family based on: "${recipePrompt}". Include ingredients and simple steps.`;
+                    callGeminiAPI(prompt, recipeOutput, recipeLoading);
+                } else {
+                    recipeOutput.innerHTML = 'Please list some ingredients or a budget.';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

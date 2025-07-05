@@ -1,6 +1,13 @@
 {
-  "contextFileHierarchy": [
-    "CONTEXTGUARD.md",
-    "GEMINI.md"
+  "contextFileName": [
+    "brief.md",
+    "product.md",
+    "context.md",
+    "architecture.md",
+    "tech.md",
+    "tasks.md",
+    "formatting.md",
+    "restricted_files.md",
+    "naming_conventions.md"
   ]
 }
