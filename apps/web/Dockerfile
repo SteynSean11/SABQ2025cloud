@@ -1,24 +1,16 @@
 # Dockerfile
 
-# 1. Installer Stage: Install dependencies for the web app
-FROM node:20-slim AS installer
-WORKDIR /app
-# Copy package manager files
-COPY apps/web/package.json apps/web/pnpm-lock.yaml ./
-# Install dependencies
-RUN npm install -g pnpm && pnpm install
-
-# 2. Builder Stage: Build the application
+# 1. Builder Stage: Build the web application
 FROM node:20-slim AS builder
 WORKDIR /app
-# Copy the entire monorepo source code
+
+# Copy all source files (respecting .dockerignore)
 COPY . .
-# Copy installed dependencies from the installer stage
-COPY --from=installer /app/node_modules ./apps/web/node_modules
-# Set the working directory to the web app
-WORKDIR /app/apps/web
-# Build the Next.js application
-RUN npm install -g pnpm && pnpm run build
+
+# Install dependencies and build the web app
+RUN npm install -g pnpm
+RUN pnpm install
+RUN pnpm --filter web build
 
 # 3. Runner Stage: Run the application
 FROM node:20-slim AS runner

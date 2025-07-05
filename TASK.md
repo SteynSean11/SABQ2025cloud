@@ -110,15 +110,17 @@ Focus: Solidify the project's foundation by implementing our contextual sandbox,
       - [x] Set up a new Express.js application in the `apps/api` directory.
       - [x] Configured TypeScript, ESLint, and Prettier for the backend.
       - [x] Created a basic server structure with middleware for logging, CORS, and error handling.
-- [ ] **Task 19: Set Up PostgreSQL & Prisma** (Priority: High)
-      - [ ] Create a new PostgreSQL database on a local or cloud instance.
-      - [ ] Initialize Prisma in the `apps/api` directory and connect it to the database.
-      - [ ] Define the initial `User` schema in `schema.prisma`.
-      - [ ] Run the first migration to create the `users` table.
-- [ ] **Task 20: Implement User API Endpoints** (Priority: High)
-      - [ ] Create a `user.controller.ts` and `user.service.ts` to handle business logic.
-      - [ ] Develop a `POST /api/users/register` endpoint with Zod validation for user input.
-      - [ ] Develop a `POST /api/users/login` endpoint.
+- [x] **Task 19: Set Up PostgreSQL & Prisma** (Priority: High)
+      - [x] **Update (2025-07-05):** Completed.
+      - [x] Created a new PostgreSQL database on a local or cloud instance.
+      - [x] Initialized Prisma in the `apps/api` directory and connected it to the database.
+      - [x] Defined the initial `User` schema in `schema.prisma`.
+      - [x] Ran the first migration to create the `users` table.
+- [x] **Task 20: Implement User API Endpoints** (Priority: High)
+      - [x] **Update (2025-07-05):** Completed backend implementation.
+      - [x] Created a `user.controller.ts` and `user.service.ts` to handle business logic.
+      - [x] Developed a `POST /api/users/register` endpoint with Zod validation for user input.
+      - [x] Developed a `POST /api/users/login` endpoint.
       - [ ] Write integration tests for the new endpoints using Vitest and Supertest.
 
 ## 📅 Sprint 5: User Authentication with Passport.js

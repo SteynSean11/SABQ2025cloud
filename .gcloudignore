@@ -1,0 +1,7 @@
+# This file specifies files that are *not* uploaded to Google Cloud Build.
+# By creating this file, we override the default gcloudignore behavior.
+
+# We must ensure all project files, especially pnpm-workspace.yaml, are uploaded.
+# The only directory we want to explicitly ignore is node_modules.
+node_modules/
+.git/

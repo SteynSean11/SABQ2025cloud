@@ -1,0 +1,20 @@
+# Ignore local dependencies
+node_modules
+**/node_modules
+
+# Ignore local build artifacts
+.next
+dist
+apps/web/.next
+apps/api/dist
+
+# Ignore git directory
+.git
+
+# Ignore local environment files
+.env
+.env.local
+
+# Ignore this file
+.dockerignore
+.gcloudignore

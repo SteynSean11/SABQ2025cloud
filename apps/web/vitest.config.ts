@@ -12,6 +12,14 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react()],
+  server: {
+    fs: {
+      allow: [
+        // Allow serving files from the project root
+        path.join(dirname, '../../'),
+      ],
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',

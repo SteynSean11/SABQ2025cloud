@@ -1,47 +1,76 @@
 steps:
-  # 1. Build the container image
+  # 1. Build the web container image
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
       - '-t'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
       - '-f'
-      - 'apps/web/Dockerfile' # Explicitly specify the Dockerfile to use
+      - 'apps/web/Dockerfile'
       - '.'
-    # The build will now run from the root of the project, giving it access to the entire monorepo
 
-  # 2. Push the container image to Google Artifact Registry
+  # 2. Build the api container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
+      - '-f'
+      - 'apps/api/Dockerfile'
+      - '.'
+
+  # 3. Push the web container image
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
 
-  # 3. Deploy container image to Google Cloud Run
+  # 4. Push the api container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
+
+  # 5. Deploy web container image to Google Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
       - 'run'
       - 'deploy'
-      - '${_SERVICE_NAME}'
+      - 'web'
       - '--image'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
       - '--region'
       - '${_REGION}'
       - '--platform'
       - 'managed'
-      - '--allow-unauthenticated' # Makes the service publicly accessible
-      - '--quiet' # Suppresses interactive prompts
+      - '--allow-unauthenticated'
+      - '--quiet'
+      
+  # 6. Deploy api container image to Google Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'api'
+      - '--image'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--quiet'
 
-# Store the image name for later use
 images:
-  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}'
+- '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
+- '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
 
-# Define user-substitutable variables with default values.
-# You can override these in your Cloud Build trigger settings.
 substitutions:
-  _SERVICE_NAME: 'sabq2025cloud-github-trigger'
   _REGION: 'us-central1'
   _REPO_NAME: 'sabq2025cloud'
+  _TAG: 'latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
