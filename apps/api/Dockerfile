@@ -16,7 +16,7 @@ COPY . .
 
 # Build required packages and generate prisma client
 RUN pnpm --filter @sabq/validation build
-RUN pnpm exec prisma generate
+RUN pnpm --filter api exec prisma generate
 RUN pnpm --filter api build
 
 # 2. Runner Stage: Create the final production image
