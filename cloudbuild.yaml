@@ -1,80 +1,22 @@
+# This is a simplified file for debugging the build process.
 steps:
-  # 0. Copy source to a clean directory, excluding node_modules
+  # Step 0: Copy source to a clean directory, excluding node_modules to avoid symlink issues.
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
       - '-c'
-      - "mkdir /tmp/source && rsync -a --exclude '**/node_modules' --exclude '.git' . /tmp/source"
+      - "echo '--- Step 0: Copying source code to /tmp/source ---' && mkdir /tmp/source && rsync -a --exclude '**/node_modules' --exclude '.git' . /tmp/source && echo '--- Step 0: Source code copied successfully. ---'"
 
-  # 1. Build the web container image from the clean source
+  # Step 1: Build the web container image from the clean source directory.
   - name: 'gcr.io/cloud-builders/docker'
-    dir: '/tmp/source/apps/web'
+    dir: '/tmp/source/apps/web' # Run this step inside the web app's directory.
     args:
       - 'build'
       - '-t'
       - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
       - '-f'
       - 'Dockerfile'
-      - '../..'
-
-  # 2. Build the api container image from the clean source
-  - name: 'gcr.io/cloud-builders/docker'
-    dir: '/tmp/source/apps/api'
-    args:
-      - 'build'
-      - '-t'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
-      - '-f'
-      - 'Dockerfile'
-      - '../..'
-
-  # 3. Push the web container image
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
-
-  # 4. Push the api container image
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
-
-  # 5. Deploy web container image to Google Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    args:
-      - 'run'
-      - 'deploy'
-      - 'web'
-      - '--image'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
-      - '--region'
-      - '${_REGION}'
-      - '--platform'
-      - 'managed'
-      - '--allow-unauthenticated'
-      - '--quiet'
-      
-  # 6. Deploy api container image to Google Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    args:
-      - 'run'
-      - 'deploy'
-      - 'api'
-      - '--image'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
-      - '--region'
-      - '${_REGION}'
-      - '--platform'
-      - 'managed'
-      - '--allow-unauthenticated'
-      - '--quiet'
-
-images:
-- '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
-- '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
+      - '../..' # The build context is the root of the clean source directory.
 
 substitutions:
   _REGION: 'us-central1'
