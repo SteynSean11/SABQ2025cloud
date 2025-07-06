@@ -1,4 +1,4 @@
-# This is a simplified file for debugging the build process.
+# This cloudbuild.yaml is configured for a pnpm monorepo.
 steps:
   # Step 0: Copy source to a clean directory, excluding node_modules to avoid symlink issues.
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -17,6 +17,61 @@ steps:
       - '-f'
       - 'Dockerfile'
       - '../..' # The build context is the root of the clean source directory.
+
+  # Step 2: Build the api container image from the clean source directory.
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: '/tmp/source/apps/api' # Run this step inside the api app's directory.
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
+      - '-f'
+      - 'Dockerfile'
+      - '../..' # The build context is the root of the clean source directory.
+
+  # Step 3: Push the web container image to Artifact Registry.
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}']
+
+  # Step 4: Push the api container image to Artifact Registry.
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}']
+
+  # Step 5: Deploy the web container to Cloud Run.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'web' # The name of your web service
+      - '--image'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--quiet'
+
+  # Step 6: Deploy the api container to Cloud Run.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'api' # The name of your api service
+      - '--image'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--quiet'
+
+images:
+  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
+  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
 
 substitutions:
   _REGION: 'us-central1'
