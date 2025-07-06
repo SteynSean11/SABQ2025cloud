@@ -1,15 +1,18 @@
 # This cloudbuild.yaml is configured for a pnpm monorepo.
 steps:
-  # Step 0: Copy source to a clean directory, excluding node_modules to avoid symlink issues.
-  - name: 'gcr.io/cloud-builders/gcloud'
+  # Step 0: Use a full Ubuntu image to install rsync and copy the source code to a clean directory.
+  # This avoids issues with symlinks in the root node_modules directory.
+  - name: 'ubuntu'
     entrypoint: 'bash'
     args:
       - '-c'
-      - "echo '--- Step 0: Copying source code to /tmp/source ---' && mkdir /tmp/source && rsync -a --exclude '**/node_modules' --exclude '.git' . /tmp/source && echo '--- Step 0: Source code copied successfully. ---'"
+      - |
+        apt-get update && apt-get install -y rsync
+        rsync -a --exclude '**/node_modules' --exclude '.git' /workspace/ /workspace/clean_source/
 
   # Step 1: Build the web container image from the clean source directory.
   - name: 'gcr.io/cloud-builders/docker'
-    dir: '/tmp/source/apps/web' # Run this step inside the web app's directory.
+    dir: '/workspace/clean_source/apps/web' # Run this step inside the web app's directory.
     args:
       - 'build'
       - '-t'
@@ -20,7 +23,7 @@ steps:
 
   # Step 2: Build the api container image from the clean source directory.
   - name: 'gcr.io/cloud-builders/docker'
-    dir: '/tmp/source/apps/api' # Run this step inside the api app's directory.
+    dir: '/workspace/clean_source/apps/api' # Run this step inside the api app's directory.
     args:
       - 'build'
       - '-t'
