@@ -1,17 +1,32 @@
 steps:
-  # 1. Build the web container image
-  - name: 'gcr.io/cloud-builders/docker'
+  # 0. Copy source to a clean directory, excluding node_modules
+  - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
       - '-c'
-      - "cd apps/web && docker build -t '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}' -f Dockerfile ../.."
+      - "mkdir /tmp/source && rsync -a --exclude '**/node_modules' --exclude '.git' . /tmp/source"
 
-  # 2. Build the api container image
+  # 1. Build the web container image from the clean source
   - name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'bash'
+    dir: '/tmp/source/apps/web' # Change the working directory to the web app
     args:
-      - '-c'
-      - "cd apps/api && docker build -t '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}' -f Dockerfile ../.."
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
+      - '-f'
+      - 'Dockerfile'
+      - '../..' # The build context is the clean monorepo root
+
+  # 2. Build the api container image from the clean source
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: '/tmp/source/apps/api' # Change the working directory to the api app
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
+      - '-f'
+      - 'Dockerfile'
+      - '../..' # The build context is the clean monorepo root
 
   # 3. Push the web container image
   - name: 'gcr.io/cloud-builders/docker'
