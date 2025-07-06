@@ -4,6 +4,9 @@
 FROM node:20-slim AS builder
 WORKDIR /app
 
+# Install openssl, a Prisma dependency
+RUN apt-get update && apt-get install -y openssl
+
 # First, copy only the package.json and pnpm-lock.yaml to leverage Docker caching
 COPY package.json pnpm-lock.yaml ./
 
@@ -14,9 +17,8 @@ RUN pnpm install
 # Copy the rest of the source code
 COPY . .
 
-# Build required packages and generate prisma client
+# Build required packages
 RUN pnpm --filter @sabq/validation build
-RUN pnpm --filter api exec prisma generate
 RUN pnpm --filter api build
 
 # 2. Runner Stage: Create the final production image
