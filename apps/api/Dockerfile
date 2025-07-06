@@ -4,29 +4,36 @@
 FROM node:20-slim AS builder
 WORKDIR /app
 
-# Copy all source files (respecting .dockerignore)
+# First, copy only the package.json and pnpm-lock.yaml to leverage Docker caching
+COPY package.json pnpm-lock.yaml ./
+
+# Install all dependencies, including devDependencies
+RUN npm install -g pnpm
+RUN pnpm install
+
+# Copy the rest of the source code
 COPY . .
 
-# Install dependencies and build the api app
-RUN npm install -g pnpm
-RUN pnpm install --prod
-RUN pnpm install
+# Build required packages and generate prisma client
 RUN pnpm --filter @sabq/validation build
 RUN pnpm exec prisma generate
 RUN pnpm --filter api build
 
-# 3. Runner Stage: Run the application
+# 2. Runner Stage: Create the final production image
 FROM node:20-slim AS runner
 WORKDIR /app
 
+# Create a non-root user for security
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 ENV NODE_ENV=production
 
-# Copy the built output from the builder stage
+# Copy production dependencies and built code from the builder stage
 COPY --from=builder /app/apps/api/dist ./dist
 COPY --from=builder /app/node_modules/.prisma/client ./node_modules/.prisma/client
+COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/client
+# You may need to copy other production node_modules from the builder stage as well
 
 USER nextjs
 
