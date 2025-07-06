@@ -7,15 +7,12 @@ WORKDIR /app
 # Install openssl, a Prisma dependency
 RUN apt-get update && apt-get install -y openssl
 
-# First, copy only the package.json and pnpm-lock.yaml to leverage Docker caching
-COPY package.json pnpm-lock.yaml ./
+# Copy all source code
+COPY . .
 
 # Install all dependencies, including devDependencies
 RUN npm install -g pnpm
 RUN pnpm install
-
-# Copy the rest of the source code
-COPY . .
 
 # Build required packages
 RUN pnpm --filter @sabq/validation build
