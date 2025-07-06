@@ -13,9 +13,9 @@ COPY . .
 # Install all dependencies, including devDependencies
 RUN npm install -g pnpm
 RUN pnpm install
+RUN pnpm --filter api install
 
 # Build required packages
-RUN pnpm exec prisma generate --schema=./apps/api/prisma/schema.prisma
 RUN pnpm --filter @sabq/validation build
 RUN pnpm --filter api build
 
