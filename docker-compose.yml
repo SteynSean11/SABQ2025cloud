@@ -13,5 +13,27 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    container_name: sabq_web
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    container_name: sabq_api
+    ports:
+      - '3001:3000'
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://user:password@db:5432/sabq_db
+
 volumes:
   postgres_data:
