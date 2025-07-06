@@ -1,20 +1,17 @@
-# Ignore local dependencies
-node_modules
+# Ignore all node_modules directories
 **/node_modules
 
-# Ignore local build artifacts
-.next
-dist
-apps/web/.next
-apps/api/dist
+# Ignore build outputs
+**/dist
+**/.next
 
-# Ignore git directory
-.git
-
-# Ignore local environment files
+# Ignore local development files
 .env
-.env.local
+*.env.local
 
-# Ignore this file
-.dockerignore
-.gcloudignore
+# Ignore git and other version control
+.git
+.gitignore
+
+# Ignore storybook static build
+/apps/web/storybook-static
