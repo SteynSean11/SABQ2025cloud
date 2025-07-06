@@ -9,6 +9,7 @@ COPY . .
 
 # Install dependencies and build the api app
 RUN npm install -g pnpm
+RUN pnpm install --prod
 RUN pnpm install
 RUN pnpm --filter @sabq/validation build
 RUN pnpm exec prisma generate
