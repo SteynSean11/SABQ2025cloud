@@ -8,25 +8,25 @@ steps:
 
   # 1. Build the web container image from the clean source
   - name: 'gcr.io/cloud-builders/docker'
-    dir: '/tmp/source/apps/web' # Change the working directory to the web app
+    dir: '/tmp/source/apps/web'
     args:
       - 'build'
       - '-t'
       - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/web:${_TAG}'
       - '-f'
       - 'Dockerfile'
-      - '../..' # The build context is the clean monorepo root
+      - '../..'
 
   # 2. Build the api container image from the clean source
   - name: 'gcr.io/cloud-builders/docker'
-    dir: '/tmp/source/apps/api' # Change the working directory to the api app
+    dir: '/tmp/source/apps/api'
     args:
       - 'build'
       - '-t'
       - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/api:${_TAG}'
       - '-f'
       - 'Dockerfile'
-      - '../..' # The build context is the clean monorepo root
+      - '../..'
 
   # 3. Push the web container image
   - name: 'gcr.io/cloud-builders/docker'
