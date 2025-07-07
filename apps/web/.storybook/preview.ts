@@ -1,4 +1,6 @@
 import type { Preview } from "@storybook/nextjs-vite";
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { withNextImage } from './decorators';
 import "../src/app/globals.css";
 
 const preview: Preview = {
@@ -9,7 +11,14 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+    nextjs: {
+      appDirectory: true,
+    },
   },
+  decorators: [withNextImage],
 };
 
 export default preview;
