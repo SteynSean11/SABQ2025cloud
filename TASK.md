@@ -18,7 +18,7 @@
       - [x] Apply basic branding: use primary brand colors and include the logo.
 
 - [x] **Task 2: Containerization** (Priority: High)
-      - [x] Create a multi-stage Dockerfile to build and serve the static assets.                                                                                                                                                                           
+      - [x] Create a multi-stage Dockerfile to build and serve the static assets.
       - [x] Test the Docker container build and run it locally.
       - [x] **Update (2025-07-03):** Corrected Dockerfile to work with monorepo structure.
 
