@@ -25,6 +25,11 @@ RUN pnpm deploy --filter=api ./deploy
 FROM node:20-slim AS runner
 WORKDIR /app
 
+# Install openssl for Prisma runtime
+RUN apt-get update && \
+    apt-get install -y openssl --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create a non-root user for security
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
