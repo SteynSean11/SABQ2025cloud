@@ -15,15 +15,10 @@ export function AiAssistantSection() {
     setLoading(true);
 
     try {
-      const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-      const payload = { contents: chatHistory };
-      const apiKey = ""; // This will be handled by the environment
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-      const response = await fetch(apiUrl, {
+      const response = await fetch('/api/gemini', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ prompt })
       });
 
       const result = await response.json();
@@ -36,7 +31,7 @@ export function AiAssistantSection() {
         setData('Sorry, I could not generate a response. Please try again.');
       }
     } catch (error) {
-      console.error('Error calling Gemini API:', error);
+      console.error('Error calling backend API:', error);
       setData('An error occurred. Please try again later.');
     } finally {
       setLoading(false);
