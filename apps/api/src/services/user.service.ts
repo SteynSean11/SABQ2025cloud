@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import { RegisterUserInput, LoginUserInput } from '@sabq/validation';
-import jwt from 'jsonwebtoken';
-
-const prisma = new PrismaClient();
+import prisma from '../config/prisma';
+import { AuthService } from './auth.service';
 
 export class UserService {
   /**
@@ -50,10 +48,7 @@ export class UserService {
       return null;
     }
 
-    const payload = { id: user.id, email: user.email };
-    const token = jwt.sign(payload, process.env.JWT_SECRET!, {
-      expiresIn: '1d',
-    });
+    const token = AuthService.generateToken(user);
 
     // Exclude password from the returned user object
     const { password, ...userWithoutPassword } = user;

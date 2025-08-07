@@ -17,7 +17,8 @@ export class UserController {
       if (error.code === 'P2002' && error.meta?.target?.includes('email')) {
         return res.status(409).json({ message: 'Email already registered' });
       }
-      res.status(500).json({ message: 'Internal server error', error: error.message });
+      console.error(error); // Log the full error for debugging
+      res.status(500).json({ message: 'Internal server error' });
     }
   }
 
