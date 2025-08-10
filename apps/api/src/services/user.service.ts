@@ -1,17 +1,19 @@
 import bcrypt from 'bcrypt';
 import { RegisterUserInput, LoginUserInput } from '@sabq/validation';
-import prisma from '../config/prisma';
+import { PrismaClient } from '@prisma/client';
 import { AuthService } from './auth.service';
 
 export class UserService {
+  constructor(private prisma: PrismaClient) {}
+
   /**
    * Registers a new user.
    * @param data - User registration input (email, password, name).
    * @returns The newly created user (excluding password).
    */
-  static async registerUser(data: RegisterUserInput) {
+  async registerUser(data: RegisterUserInput) {
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    const user = await prisma.user.create({
+    const user = await this.prisma.user.create({
       data: {
         email: data.email,
         password: hashedPassword,
@@ -33,8 +35,8 @@ export class UserService {
    * @param data - User login input (email, password).
    * @returns The authenticated user and a JWT, or null if authentication fails.
    */
-  static async loginUser(data: LoginUserInput) {
-    const user = await prisma.user.findUnique({
+  async loginUser(data: LoginUserInput) {
+    const user = await this.prisma.user.findUnique({
       where: { email: data.email },
     });
 
