@@ -32,6 +32,20 @@ interface RetroGridProps extends React.HTMLAttributes<HTMLDivElement> {
   darkLineColor?: string;
 }
 
+/**
+ * Renders a full-viewport, decorative tilting grid overlay that adapts to light/dark mode.
+ *
+ * The component is purely presentational and driven by CSS custom properties set from props.
+ * Extra HTML div attributes are forwarded to the root element.
+ *
+ * @param className - Optional additional CSS classes applied to the root container.
+ * @param angle - Rotation angle in degrees for the grid tilt (used as `--grid-angle`). Default: 65.
+ * @param cellSize - Size in pixels of each grid cell (used as `--cell-size`). Default: 60.
+ * @param opacity - Opacity for the grid layer (0 to 1, used as `--opacity`). Default: 0.5.
+ * @param lightLineColor - Line color used in light mode (set as `--light-line`). Default: "gray".
+ * @param darkLineColor - Line color used in dark mode (set as `--dark-line`). Default: "gray".
+ * @returns A JSX element containing the styled grid overlay.
+ */
 export function RetroGrid({
   className,
   angle = 65,
