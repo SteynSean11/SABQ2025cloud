@@ -10,6 +10,12 @@ export const metadata: Metadata = {
   description: "Helping you manage your finances.",
 };
 
+/**
+ * App root layout that supplies global fonts, CSS and the HeroUIProvider to every page.
+ *
+ * @param children - The page content to render inside the app's root.
+ * @returns The top-level HTML structure (<html>/<body>) with the global font class and HeroUIProvider wrapping `children`.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
