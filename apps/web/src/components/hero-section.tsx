@@ -1,10 +1,13 @@
 "use client";
 import React from 'react';
+import { Button } from "@heroui/react";
 import Link from 'next/link';
+import { RetroGrid } from './magicui/retro-grid';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="text-center py-20 bg-brand-background">
+    <section className="relative text-center py-20 bg-brand-background">
+      <RetroGrid />
       <h1 className="text-5xl font-bold text-brand-primary">
         Live Like Royalty on Any Budget
       </h1>
@@ -14,9 +17,8 @@ export const HeroSection: React.FC = () => {
       <div className="mt-8">
         <Link
           href="/templates"
-          className="bg-brand-secondary text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition duration-300"
         >
-          Get Your Free Templates
+          <Button color="primary">Get Your Free Templates</Button>
         </Link>
       </div>
     </section>

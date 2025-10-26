@@ -29,8 +29,10 @@ app.get('/', (req: Request, res: Response) => {
   res.send('SA Budget Queen API is running!');
 });
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
+  });
+}
 
 export default app;
